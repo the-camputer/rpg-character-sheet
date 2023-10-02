@@ -9,30 +9,24 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+            <Grid RowDefinitions="50,50" ColumnDefinitions="50,50" HorizontalOptions="Center" RowSpacing="10" ColumnSpacing="10">
+                <Image Source="dungeon_gate.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="0" Grid.Row="0"/>
+                <Image Source="dragon_head.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="1" Grid.Row="0"/>
+                <Image Source="open_treasure_chest.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="0" Grid.Row="1"/>
+                <Image Source="dice_twenty_faces_twenty.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="1" Grid.Row="1"/>
+            </Grid>
 
             <Label
-                Text="Hello, World!"
+                Text="RPG Character Sheet"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
             <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                x:Name="CreateBtn"
+                Text="Create"
+                SemanticProperties.Hint="Create a new Character Sheet"
+                Clicked="OnCreateClicked"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>
