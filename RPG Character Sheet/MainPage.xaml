@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RPG_Character_Sheet.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Grid RowDefinitions="50,50" ColumnDefinitions="50,50" HorizontalOptions="Center" RowSpacing="10" ColumnSpacing="10">
+                <Image Source="dungeon_gate.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="0" Grid.Row="0"/>
+                <Image Source="dragon_head.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="1" Grid.Row="0"/>
+                <Image Source="open_treasure_chest.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="0" Grid.Row="1"/>
+                <Image Source="dice_twenty_faces_twenty.png" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="50" Grid.Column="1" Grid.Row="1"/>
+            </Grid>
+
+            <Label
+                Text="RPG Character Sheet"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="CreateBtn"
+                Text="Create"
+                SemanticProperties.Hint="Create a new Character Sheet"
+                Clicked="OnCreateClicked"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
