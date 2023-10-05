@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPG Character Sheet", "RPG Character Sheet\RPG Character Sheet.csproj", "{3B888450-C9D0-4512-88FB-2EDDB4B5CC0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG_Character_Sheet.Models", "RPG_Character_Sheet.Models\RPG_Character_Sheet.Models.csproj", "{DA340519-8871-432C-8A14-7F7EC15B0101}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B888450-C9D0-4512-88FB-2EDDB4B5CC0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B888450-C9D0-4512-88FB-2EDDB4B5CC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B888450-C9D0-4512-88FB-2EDDB4B5CC0C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3B888450-C9D0-4512-88FB-2EDDB4B5CC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B888450-C9D0-4512-88FB-2EDDB4B5CC0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B888450-C9D0-4512-88FB-2EDDB4B5CC0C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DA340519-8871-432C-8A14-7F7EC15B0101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA340519-8871-432C-8A14-7F7EC15B0101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA340519-8871-432C-8A14-7F7EC15B0101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA340519-8871-432C-8A14-7F7EC15B0101}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94D5C34F-8BF9-48D5-89F0-A391DFFD997A}
+	EndGlobalSection
+EndGlobal

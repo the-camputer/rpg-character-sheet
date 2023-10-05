@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RPG_Character_Sheet.CharacterSheet"
+             Title="CharacterSheet">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,10"
+            MaximumWidthRequest="10000"
+            HorizontalOptions="Center"
+            VerticalOptions="Start">
+            <FlexLayout Direction="Row" JustifyContent="Start" HorizontalOptions="FillAndExpand">
+                <VerticalStackLayout FlexLayout.Grow="1" Padding="10,0" Spacing="5">
+                    <Label Text="Character Name" HorizontalOptions="Center"/>
+                    <Entry />
+                </VerticalStackLayout>
+                <VerticalStackLayout FlexLayout.Grow="0" MinimumWidthRequest="100" Spacing="5">
+                    <Label Text="Alignment" HorizontalOptions="Center"/>
+                    <Picker
+                        x:Name="AlignmentPicker" 
+                        SelectedItem="{Binding SelectedAlignment}" 
+                        SelectedIndexChanged="AlignmentPicker_SelectedIndexChanged" 
+                        HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout FlexLayout.Grow="1" Padding="10,0" Spacing="5">
+                    <Label Text="Player Name" HorizontalOptions="Center"/>
+                    <Entry />
+                </VerticalStackLayout>
+            </FlexLayout>
+            <Line></Line>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

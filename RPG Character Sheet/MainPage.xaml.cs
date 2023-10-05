@@ -11,7 +11,7 @@
 
         private void OnCreateClicked(object sender, EventArgs e)
         {
-            Console.WriteLine("Creating new character sheet");
+            Navigation.PushAsync(new CharacterSheet());
         }
     }
 }

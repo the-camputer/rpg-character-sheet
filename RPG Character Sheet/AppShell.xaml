@@ -11,4 +11,9 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="New Character"
+        ContentTemplate="{DataTemplate local:CharacterSheet}"
+        Route="Character" />
+
 </Shell>
