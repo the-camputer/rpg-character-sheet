@@ -1,4 +1,4 @@
-﻿namespace RPGCharacterSheet
+﻿namespace RPGCharacterSheet.Pages
 {
     public partial class MainPage : ContentPage
     {
