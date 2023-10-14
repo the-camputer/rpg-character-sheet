@@ -1,4 +1,4 @@
-using RPGCharacterSheet.Models.CharacterSheet;
+using RPGCharacterSheet.ViewModels;
 
 
 namespace RPGCharacterSheet.Pages;

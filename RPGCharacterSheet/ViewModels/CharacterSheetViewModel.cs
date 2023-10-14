@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using RPGCharacterSheet.Models;
 
-namespace RPGCharacterSheet.Models.CharacterSheet
+namespace RPGCharacterSheet.ViewModels
 {
     public class CharacterSheetViewModel : INotifyPropertyChanged
     {
@@ -44,7 +45,7 @@ namespace RPGCharacterSheet.Models.CharacterSheet
             }
         }
 
-        public CharacterSheetViewModel() 
+        public CharacterSheetViewModel()
         {
             _characterData = new CharacterData();
             setUp();
@@ -74,7 +75,7 @@ namespace RPGCharacterSheet.Models.CharacterSheet
 
         protected void OnPropertyChanged(string propertyName)
         {
-            System.Diagnostics.Debug.WriteLine($"{propertyName}, {this.GetType().GetProperty(propertyName).GetValue(this)}");
+            System.Diagnostics.Debug.WriteLine($"{propertyName}, {GetType().GetProperty(propertyName).GetValue(this)}");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

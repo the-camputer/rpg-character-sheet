@@ -1,4 +1,5 @@
-using RPGCharacterSheet.Models.CharacterSheet;
+using RPGCharacterSheet.Models;
+using RPGCharacterSheet.ViewModels;
 
 namespace RPGCharacterSheet.Tests.CharacterSheet
 {
@@ -7,7 +8,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [Fact]
         public void Updating_VM_Updates_CharacterData()
         {
-            CharacterData characterData = new CharacterData();
+            CharacterData characterData = new();
             CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
             
             viewModel.CharacterName = "Balthazar";

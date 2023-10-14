@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RPGCharacterSheet.Models\RPGCharacterSheet.Models.csproj" />
+    <ProjectReference Include="..\RPGCharacterSheet\RPGCharacterSheet.csproj" />
   </ItemGroup>
 
 </Project>
