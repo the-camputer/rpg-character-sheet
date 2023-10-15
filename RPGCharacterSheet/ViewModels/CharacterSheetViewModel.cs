@@ -61,6 +61,7 @@ namespace RPGCharacterSheet.ViewModels
             get => _characterData.Level;
             set
             {
+                // TODO: Add validation.
                 _characterData.Level = value;
                 OnPropertyChanged(nameof(Level));
             }

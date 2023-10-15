@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RPGCharacterSheet.Pages.CharacterSheet"
              Title="CharacterSheet">
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,10"
-            MaximumWidthRequest="10000"
+            MaximumWidthRequest="1800"
             HorizontalOptions="Center"
             VerticalOptions="Start">
             <FlexLayout Direction="Row" JustifyContent="Start" HorizontalOptions="FillAndExpand">
@@ -28,7 +34,34 @@
                     <Entry x:Name="PlayerName" Text="{Binding PlayerName, Mode=TwoWay}"/>
                 </VerticalStackLayout>
             </FlexLayout>
-            <Line></Line>
+            <FlexLayout Direction="Row" JustifyContent="Start" HorizontalOptions="FillAndExpand" Wrap="Wrap">
+                <VerticalStackLayout Spacing="5" FlexLayout.Grow="1" Padding="10,0">
+                    <Label Text="Character Class" HorizontalOptions="Center"/>
+                    <Entry x:Name="Class" Text="{Binding Class, Mode=TwoWay}" MinimumWidthRequest="200"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="25">
+                    <Label Text="Level" HorizontalOptions="Center"/>
+                    <Entry x:Name="Level" Keyboard="Numeric" Text="{Binding Level, Mode=TwoWay}" HorizontalOptions="Center">
+                        <Entry.Behaviors>
+                            <toolkit:NumericValidationBehavior
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                Flags="ValidateOnValueChanged"
+                                MinimumValue="1"
+                                MaximumValue="20"
+                                MaximumDecimalPlaces="0"
+                            />
+                        </Entry.Behaviors>
+                    </Entry>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="290">
+                    <Label Text="Background" HorizontalOptions="Center"/>
+                    <Entry x:Name="Background" Text="{Binding Background, Mode=TwoWay}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Padding="10,0" Spacing="5" MinimumWidthRequest="290">
+                    <Label Text="Homeland" HorizontalOptions="Center"/>
+                    <Entry x:Name="Homeland" Text="{Binding Homeland, Mode=TwoWay}"/>
+                </VerticalStackLayout>
+            </FlexLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

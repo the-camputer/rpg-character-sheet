@@ -24,6 +24,10 @@ namespace RPGCharacterSheet.Models
         public string Hair { get; set; }
         public string Eyes {  get; set; }
         public int ExperiencePoints { get; set; }
-        public CharacterData() { }
+        public CharacterData() 
+        {
+            Level = 1;
+            ExperiencePoints = 0;
+        }
     }
 }
