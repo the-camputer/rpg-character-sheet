@@ -27,6 +27,7 @@ namespace RPGCharacterSheet.Models
         public CharacterData() 
         {
             Level = 1;
+            Age = 1;
             ExperiencePoints = 0;
         }
     }
