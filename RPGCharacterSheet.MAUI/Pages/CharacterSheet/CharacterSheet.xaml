@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="RPGCharacterSheet.Pages.CharacterSheet"
+             Title="CharacterSheet">
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="BasicInfoRow" TargetType="FlexLayout">
+            <Setter Property="Direction" Value="Row" />
+            <Setter Property="JustifyContent" Value="Start" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="Wrap" Value="Wrap" />
+            <Setter Property="Margin" Value="0,10" />
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,10"
+            MaximumWidthRequest="1200"
+            HorizontalOptions="Center"
+            VerticalOptions="Start">
+            <Border Stroke="LightGray">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <FlexLayout Style="{StaticResource BasicInfoRow}">
+                        <VerticalStackLayout FlexLayout.Grow="1" Padding="10,0" Spacing="5">
+                            <Label Text="Character Name" HorizontalOptions="Center"/>
+                            <Entry x:Name="CharacterName" Text="{Binding CharacterName, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout FlexLayout.Grow="0" MinimumWidthRequest="100" Spacing="5">
+                            <Label Text="Alignment" HorizontalOptions="Center"/>
+                            <Picker
+                                x:Name="Alignment" 
+                                ItemsSource="{Binding Alignments}"
+                                SelectedItem="{Binding Alignment, Mode=TwoWay}"
+                                HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout FlexLayout.Grow="1" Padding="10,0" Spacing="5">
+                            <Label Text="Player Name" HorizontalOptions="Center"/>
+                            <Entry x:Name="PlayerName" Text="{Binding PlayerName, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                    <FlexLayout Style="{StaticResource BasicInfoRow}">
+                        <VerticalStackLayout Spacing="5" FlexLayout.Grow="1" Padding="10,0">
+                            <Label Text="Character Class" HorizontalOptions="Center"/>
+                            <Entry x:Name="Class" Text="{Binding Class, Mode=TwoWay}" MinimumWidthRequest="200"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="25">
+                            <Label Text="Level" HorizontalOptions="Center"/>
+                            <Entry x:Name="Level" Keyboard="Numeric" Text="{Binding Level, Mode=TwoWay}" HorizontalOptions="Center">
+                                <Entry.Behaviors>
+                                    <toolkit:NumericValidationBehavior
+                                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                        Flags="ValidateOnValueChanged"
+                                        MinimumValue="1"
+                                        MaximumValue="20"
+                                        MaximumDecimalPlaces="0"
+                                    />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="290">
+                            <Label Text="Background" HorizontalOptions="Center"/>
+                            <Entry x:Name="Background" Text="{Binding Background, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Padding="10,0" Spacing="5" MinimumWidthRequest="290">
+                            <Label Text="Homeland" HorizontalOptions="Center"/>
+                            <Entry x:Name="Homeland" Text="{Binding Homeland, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                    <FlexLayout Style="{StaticResource BasicInfoRow}">
+                        <VerticalStackLayout Spacing="5" FlexLayout.Grow="1" Padding="10,0">
+                            <Label Text="Ancestry" HorizontalOptions="Center" />
+                            <Entry x:Name="Ancestry" Text="{Binding Ancestry, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                            <Label Text="Gender" HorizontalOptions="Center" />
+                            <Entry x:Name="Gender" Text="{Binding Gender, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                            <Label Text="Age" HorizontalOptions="Center" />
+                            <Entry x:Name="Age" Text="{Binding Age, Mode=TwoWay}">
+                                <Entry.Behaviors>
+                                    <toolkit:NumericValidationBehavior
+                                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                        Flags="ValidateOnValueChanged"
+                                        MinimumValue="1"
+                                        MaximumDecimalPlaces="0"
+                                    />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                            <Label Text="Height" HorizontalOptions="Center" />
+                            <Entry x:Name="Height" Text="{Binding Height, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                            <Label Text="Weight" HorizontalOptions="Center" />
+                            <Entry x:Name="Weight" Text="{Binding Weight, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                            <Label Text="Skin" HorizontalOptions="Center" />
+                            <Entry x:Name="Skin" Text="{Binding Skin, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                            <Label Text="Hair" HorizontalOptions="Center" />
+                            <Entry x:Name="Hair" Text="{Binding Hair, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                            <Label Text="Eyes" HorizontalOptions="Center" />
+                            <Entry x:Name="Eyes" Text="{Binding Eyes, Mode=TwoWay}"/>
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
