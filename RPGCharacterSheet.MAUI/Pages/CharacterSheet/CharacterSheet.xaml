@@ -28,6 +28,8 @@
                     <RoundRectangle CornerRadius="10" />
                 </Border.StrokeShape>
                 <VerticalStackLayout>
+                    <Label Text="General" FontSize="Header" HorizontalOptions="Center"/>
+                    <BoxView HeightRequest="2" />
                     <FlexLayout Style="{StaticResource BasicInfoRow}">
                         <VerticalStackLayout FlexLayout.Grow="1" Padding="10,0" Spacing="5">
                             <Label Text="Character Name" HorizontalOptions="Center"/>
@@ -119,6 +121,30 @@
                     </FlexLayout>
                 </VerticalStackLayout>
             </Border>
+            <Grid RowDefinitions="500, 500, 500" ColumnDefinitions="400, 400, 400">
+                <HorizontalStackLayout>
+                    <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2" MinimumWidthRequest="125" Margin="10,0">
+                        <ListView ItemsSource="{Binding AbilityScores}" HorizontalOptions="Center">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Border Stroke="LightGray" HorizontalOptions="Center" WidthRequest="125" Padding="0,10" Margin="0,0,0,10">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="10" />
+                                            </Border.StrokeShape>
+                                            <VerticalStackLayout Spacing="10">
+                                                <Label Text="{Binding Name}" FontSize="Caption" HorizontalOptions="Center"/>
+                                                <Entry Text="{Binding Score, Mode=TwoWay}" WidthRequest="75" FontSize="Small" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                                <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

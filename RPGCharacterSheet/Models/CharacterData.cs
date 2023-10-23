@@ -24,11 +24,14 @@ namespace RPGCharacterSheet.Models
         public string Hair { get; set; }
         public string Eyes {  get; set; }
         public int ExperiencePoints { get; set; }
+
+        public List<AbilityScore> AbilityScores { get; set; } 
         public CharacterData() 
         {
             Level = 1;
             Age = 1;
             ExperiencePoints = 0;
+            AbilityScores = new List<AbilityScore>();
         }
     }
 }
