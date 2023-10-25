@@ -176,6 +176,9 @@ namespace RPGCharacterSheet.ViewModels
                 OnPropertyChanged(nameof(ExperiencePoints));
             }
         }
+
+        private ObservableCollection<AbilityScore> _abilityScores;
+        public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
         #endregion
 
         public CharacterSheetViewModel()
@@ -204,6 +207,15 @@ namespace RPGCharacterSheet.ViewModels
                 "NE",
                 "CE"
             };
+
+            _characterData.AbilityScores.Add(new AbilityScore { Name = "Strength" });
+            _characterData.AbilityScores.Add(new AbilityScore { Name = "Dexterity" });
+            _characterData.AbilityScores.Add(new AbilityScore { Name = "Constitution" });
+            _characterData.AbilityScores.Add(new AbilityScore { Name = "Intelligence" });
+            _characterData.AbilityScores.Add(new AbilityScore { Name = "Wisdom" });
+            _characterData.AbilityScores.Add(new AbilityScore { Name = "Charisma" });
+
+            _abilityScores = new ObservableCollection<AbilityScore>(_characterData.AbilityScores);
         }
 
         protected void OnPropertyChanged(string propertyName)

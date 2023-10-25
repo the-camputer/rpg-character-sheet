@@ -45,5 +45,38 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal("Mulled wine", characterData.Eyes);
             Assert.Equal(350000, characterData.ExperiencePoints);
         }
+
+        [Fact]
+        public void VM_Adds_AbilityScores_To_Character_Data()
+        {
+            CharacterData characterData = new();
+            CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
+
+            Assert.Collection(characterData.AbilityScores,
+                ab =>
+                {
+                    Assert.Equal("Strength", ab.Name);
+                },
+                ab =>
+                {
+                    Assert.Equal("Dexterity", ab.Name);
+                },
+                ab =>
+                {
+                    Assert.Equal("Constitution", ab.Name);
+                },
+                ab =>
+                {
+                    Assert.Equal("Intelligence", ab.Name);
+                },
+                ab =>
+                {
+                    Assert.Equal("Wisdom", ab.Name);
+                },
+                ab =>
+                {
+                    Assert.Equal("Charisma", ab.Name);
+                });
+        }
     }
 }
