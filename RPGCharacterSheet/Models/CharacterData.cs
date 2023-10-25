@@ -28,6 +28,8 @@ namespace RPGCharacterSheet.Models
         public List<AbilityScore> AbilityScores { get; set; }
         
         public List<Skill> SavingThrows { get; set; }
+
+        public List<Skill> SkillChecks { get; set; }
         public CharacterData() 
         {
             Level = 1;
@@ -35,6 +37,7 @@ namespace RPGCharacterSheet.Models
             ExperiencePoints = 0;
             AbilityScores = new List<AbilityScore>();
             SavingThrows = new List<Skill>();
+            SkillChecks = new List<Skill>();
         }
     }
 }

@@ -148,13 +148,13 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
-                            <VerticalStackLayout>
+                            <VerticalStackLayout Spacing="10">
                                 <ListView ItemsSource="{Binding SavingThrows}" HorizontalOptions="Center">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
                                                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                                                    <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                                    <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                                     <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
                                                 </HorizontalStackLayout>
                                             </ViewCell>
@@ -162,6 +162,26 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <Label Text="Saving Throws" FontSize="Caption" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Stroke="LightGray" WidthRequest="150" Padding="0,10" Margin="0,0,0,10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="10">
+                                <ListView ItemsSource="{Binding SkillChecks}" HorizontalOptions="Center">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                                    <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25" />
+                                                    <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
+                                                </HorizontalStackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <Label Text="Skills" FontSize="Caption" HorizontalOptions="Center"/>
                             </VerticalStackLayout>
                         </Border>
                     </VerticalStackLayout>
