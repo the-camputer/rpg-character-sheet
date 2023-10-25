@@ -34,7 +34,7 @@ namespace RPGCharacterSheet.Models
         protected void OnPropertyChanged(string propertyName)
         {
             System.Diagnostics.Debug.WriteLine($"{propertyName}, {GetType().GetProperty(propertyName).GetValue(this)}");
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
