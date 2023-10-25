@@ -179,6 +179,9 @@ namespace RPGCharacterSheet.ViewModels
 
         private ObservableCollection<AbilityScore> _abilityScores;
         public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
+
+        private ObservableCollection<Skill> _savingThrows;
+        public ObservableCollection<Skill> SavingThrows { get { return _savingThrows; } }
         #endregion
 
         public CharacterSheetViewModel()
@@ -208,14 +211,25 @@ namespace RPGCharacterSheet.ViewModels
                 "CE"
             };
 
-            _characterData.AbilityScores.Add(new AbilityScore { Name = "Strength" });
-            _characterData.AbilityScores.Add(new AbilityScore { Name = "Dexterity" });
-            _characterData.AbilityScores.Add(new AbilityScore { Name = "Constitution" });
-            _characterData.AbilityScores.Add(new AbilityScore { Name = "Intelligence" });
-            _characterData.AbilityScores.Add(new AbilityScore { Name = "Wisdom" });
-            _characterData.AbilityScores.Add(new AbilityScore { Name = "Charisma" });
+            AbilityScore _str = new AbilityScore { Name = "Strength" };
+            AbilityScore _dex = new AbilityScore { Name = "Dexterity" };
+            AbilityScore _con = new AbilityScore { Name = "Constitution" };
+            AbilityScore _int = new AbilityScore { Name = "Intelligence" };
+            AbilityScore _wis = new AbilityScore { Name = "Wisdom" };
+            AbilityScore _cha = new AbilityScore { Name = "Charisma" };
 
+
+            _characterData.AbilityScores.AddRange(new List<AbilityScore> { _str, _dex, _con, _int, _wis, _cha });
             _abilityScores = new ObservableCollection<AbilityScore>(_characterData.AbilityScores);
+
+            Skill saveStr = new Skill { Name = _str.Name, BaseAbilityScore = _str };
+            Skill saveDex = new Skill { Name = _dex.Name, BaseAbilityScore = _dex };
+            Skill saveCon = new Skill { Name = _con.Name, BaseAbilityScore = _con };
+            Skill saveInt = new Skill { Name = _int.Name, BaseAbilityScore = _int };
+            Skill saveWis = new Skill { Name = _wis.Name, BaseAbilityScore = _wis };
+            Skill saveCha = new Skill { Name = _cha.Name, BaseAbilityScore = _cha };
+            _characterData.SavingThrows.AddRange(new List<Skill> { saveStr, saveDex, saveCon, saveInt, saveWis, saveCha });
+            _savingThrows = new ObservableCollection<Skill>(_characterData.SavingThrows);
         }
 
         protected void OnPropertyChanged(string propertyName)

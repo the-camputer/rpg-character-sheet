@@ -18,8 +18,8 @@ namespace RPGCharacterSheet.Models
             get => _score; 
             set { 
                 _score = value; 
-                OnPropertyChanged("Score");
-                OnPropertyChanged("Modifier"); 
+                OnPropertyChanged(nameof(Score));
+                OnPropertyChanged(nameof(Modifier)); 
             } 
         }
 

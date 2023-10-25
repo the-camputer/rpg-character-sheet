@@ -122,8 +122,8 @@
                 </VerticalStackLayout>
             </Border>
             <Grid RowDefinitions="500, 500, 500" ColumnDefinitions="400, 400, 400">
-                <HorizontalStackLayout>
-                    <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2" MinimumWidthRequest="125" Margin="10,0">
+                <HorizontalStackLayout Grid.Row="0" Grid.RowSpan="2">
+                    <VerticalStackLayout  MinimumWidthRequest="125" Margin="10,0">
                         <ListView ItemsSource="{Binding AbilityScores}" HorizontalOptions="Center">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -142,6 +142,28 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Border Stroke="LightGray" WidthRequest="150" Padding="0,10" Margin="0,0,0,10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout>
+                                <ListView ItemsSource="{Binding SavingThrows}" HorizontalOptions="Center">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                                    <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                                    <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
+                                                </HorizontalStackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <Label Text="Saving Throws" FontSize="Caption" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
             </Grid>
