@@ -249,7 +249,7 @@ namespace RPGCharacterSheet.ViewModels
             Skill performance = new Skill { Name = "Performance", BaseAbilityScore = _cha };
             Skill persuation = new Skill { Name = "Persuation", BaseAbilityScore = _cha };
             Skill religion = new Skill { Name = "Religion", BaseAbilityScore = _int };
-            Skill slightOfHand = new Skill { Name = "Slight of Hand", BaseAbilityScore = _dex };
+            Skill slightOfHand = new Skill { Name = "Sleight of Hand", BaseAbilityScore = _dex };
             Skill stealth = new Skill { Name = "Stealth", BaseAbilityScore = _dex };
             Skill survival = new Skill { Name = "Survival", BaseAbilityScore = _wis };
             _characterData.SkillChecks.AddRange(new List<Skill> 
@@ -278,7 +278,6 @@ namespace RPGCharacterSheet.ViewModels
 
         protected void OnPropertyChanged(string propertyName)
         {
-            System.Diagnostics.Debug.WriteLine($"{propertyName}, {GetType().GetProperty(propertyName).GetValue(this)}");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
