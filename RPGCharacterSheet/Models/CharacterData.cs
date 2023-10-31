@@ -30,6 +30,8 @@ namespace RPGCharacterSheet.Models
         public List<Skill> SavingThrows { get; set; }
 
         public List<Skill> SkillChecks { get; set; }
+
+        public Skill ProficiencyBonus { get; set; }
         public CharacterData() 
         {
             Level = 1;
@@ -38,6 +40,7 @@ namespace RPGCharacterSheet.Models
             AbilityScores = new List<AbilityScore>();
             SavingThrows = new List<Skill>();
             SkillChecks = new List<Skill>();
+            ProficiencyBonus = new Skill { Name = "Proficiency", Modifier = 0 };
         }
     }
 }

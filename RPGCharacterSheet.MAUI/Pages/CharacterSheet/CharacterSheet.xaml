@@ -149,13 +149,39 @@
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                    <Entry Text="{Binding Proficiency, TargetNullValue=0}"  IsEnabled="True" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25">
+                                        <Entry.Behaviors>
+                                            <toolkit:NumericValidationBehavior
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                Flags="ValidateOnValueChanged"
+                                                MinimumValue="0"
+                                                MaximumDecimalPlaces="0"
+                                            />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                    <Label Text="Proficiency Bonus" FontSize="Caption" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Stroke="LightGray" WidthRequest="150" Padding="0,10" Margin="0,0,0,10" >
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="10">
                                 <ListView ItemsSource="{Binding SavingThrows}" HorizontalOptions="Center">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
                                                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                                                     <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
-                                                    <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
+                                                    <VerticalStackLayout>
+                                                        <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
+                                                        <HorizontalStackLayout>
+                                                            <CheckBox IsChecked="{Binding Proficient}" />
+                                                            <Label Text="prof" FontSize="Caption" />
+                                                        </HorizontalStackLayout>
+                                                    </VerticalStackLayout>
                                                 </HorizontalStackLayout>
                                             </ViewCell>
                                         </DataTemplate>

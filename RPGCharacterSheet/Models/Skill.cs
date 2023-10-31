@@ -30,6 +30,22 @@ namespace RPGCharacterSheet.Models
             }
         }
 
+        private Skill _proficiencyModifier;
+        public Skill ProficiencyModifier
+        {
+            get => _proficiencyModifier;
+            set
+            {
+                if (_proficiencyModifier != null)
+                {
+                    _proficiencyModifier.PropertyChanged -= ProficiencyModifierChanged;
+                }
+                _proficiencyModifier = value;
+                _proficiencyModifier.PropertyChanged += ProficiencyModifierChanged;
+                Modifier += _proficiencyModifier.Modifier;
+            }
+        }
+
         private void _baseAbilityScore_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             throw new NotImplementedException();
@@ -46,6 +62,36 @@ namespace RPGCharacterSheet.Models
             }
         }
 
+        private bool _proficient;
+        public bool Proficient
+        {
+            get => _proficient;
+            set
+            {
+                if (_proficient && !value)
+                {
+                    Modifier -= ProficiencyModifier.Modifier;
+                } else if (!_proficient && value)
+                {
+                    Modifier += ProficiencyModifier.Modifier;
+                }
+                _proficient = value;
+                OnPropertyChanged(nameof(Proficient));
+            }
+        }
+
+        private bool _expert;
+        public bool Expert
+        {
+            get => _expert;
+            set
+            {
+                _expert = value;
+                OnPropertyChanged(nameof(Expert));
+                OnPropertyChanged(nameof(Modifier));
+            }
+        }
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -56,6 +102,14 @@ namespace RPGCharacterSheet.Models
             if (a.PropertyName == "Modifier")
             {
                 this.Modifier = (sender as AbilityScore).Modifier;
+            }
+        }
+
+        public void ProficiencyModifierChanged(object sender, PropertyChangedEventArgs a)
+        {
+            if (a.PropertyName == "Modifier" && this.Proficient)
+            {
+                this.Modifier = this.BaseAbilityScore.Modifier + (sender as Skill).Modifier;
             }
         }
     }
