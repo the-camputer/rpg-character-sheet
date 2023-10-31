@@ -18,8 +18,8 @@ namespace RPGCharacterSheet.Models
             get => _score; 
             set { 
                 _score = value; 
-                OnPropertyChanged("Score");
-                OnPropertyChanged("Modifier"); 
+                OnPropertyChanged(nameof(Score));
+                OnPropertyChanged(nameof(Modifier)); 
             } 
         }
 
@@ -33,7 +33,6 @@ namespace RPGCharacterSheet.Models
 
         protected void OnPropertyChanged(string propertyName)
         {
-            System.Diagnostics.Debug.WriteLine($"{propertyName}, {GetType().GetProperty(propertyName).GetValue(this)}");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
