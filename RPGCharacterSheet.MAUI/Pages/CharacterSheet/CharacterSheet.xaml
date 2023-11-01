@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:RPGCharacterSheet"
              x:Class="RPGCharacterSheet.Pages.CharacterSheet"
              Title="CharacterSheet">
     <ContentPage.Resources>
@@ -15,6 +16,7 @@
             <Setter Property="Wrap" Value="Wrap" />
             <Setter Property="Margin" Value="0,10" />
         </Style>
+        <local:BlankAs0Converter x:Key="BlankAs0Converter"/>
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
@@ -134,7 +136,7 @@
                                             </Border.StrokeShape>
                                             <VerticalStackLayout Spacing="10">
                                                 <Label Text="{Binding Name}" FontSize="Caption" HorizontalOptions="Center"/>
-                                                <Entry Text="{Binding Score, Mode=TwoWay}" WidthRequest="75" FontSize="Small" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                                <Entry Text="{Binding Score, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" WidthRequest="75" FontSize="Small" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                                 <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                             </VerticalStackLayout>
                                         </Border>
@@ -150,7 +152,7 @@
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
                                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                                    <Entry Text="{Binding Proficiency, TargetNullValue=0}"  IsEnabled="True" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25">
+                                    <Entry Text="{Binding Proficiency, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}"  IsEnabled="True" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25">
                                         <Entry.Behaviors>
                                             <toolkit:NumericValidationBehavior
                                                 InvalidStyle="{StaticResource InvalidEntryStyle}"
