@@ -26,7 +26,7 @@ namespace RPGCharacterSheet.Models
                 }
                 _baseAbilityScore = value;
                 _baseAbilityScore.PropertyChanged += AbilityScoreModifierChanged;
-                Modifier = _baseAbilityScore.Modifier;
+                Modifier = CalculateModifier();
             }
         }
 
@@ -42,7 +42,7 @@ namespace RPGCharacterSheet.Models
                 }
                 _proficiencyModifier = value;
                 _proficiencyModifier.PropertyChanged += ProficiencyModifierChanged;
-                Modifier += _proficiencyModifier.Modifier;
+                Modifier = CalculateModifier();
             }
         }
 
@@ -101,7 +101,7 @@ namespace RPGCharacterSheet.Models
         {
             if (a.PropertyName == "Modifier")
             {
-                this.Modifier = (sender as AbilityScore).Modifier;
+                this.Modifier = CalculateModifier();
             }
         }
 
@@ -109,8 +109,20 @@ namespace RPGCharacterSheet.Models
         {
             if (a.PropertyName == "Modifier" && this.Proficient)
             {
-                this.Modifier = this.BaseAbilityScore.Modifier + (sender as Skill).Modifier;
+                this.Modifier = CalculateModifier();
             }
+        }
+
+        private int CalculateModifier()
+        {
+            int result = BaseAbilityScore.Modifier;
+
+            if (Proficient && ProficiencyModifier != null)
+            {
+                result += ProficiencyModifier.Modifier;
+            }
+
+            return result;
         }
     }
 }
