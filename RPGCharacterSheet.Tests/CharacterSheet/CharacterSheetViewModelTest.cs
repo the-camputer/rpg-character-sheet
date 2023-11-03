@@ -9,7 +9,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         public void Updating_VM_Updates_CharacterData()
         {
             CharacterData characterData = new();
-            CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
+            CharacterSheetViewModel viewModel = new(characterData);
             
             viewModel.CharacterName = "Balthazar";
             viewModel.Alignment = "LG";

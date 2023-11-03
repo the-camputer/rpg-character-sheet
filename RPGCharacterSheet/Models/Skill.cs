@@ -46,11 +46,6 @@ namespace RPGCharacterSheet.Models
             }
         }
 
-        private void _baseAbilityScore_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private int _modifier;
         public int Modifier
         {
@@ -68,14 +63,12 @@ namespace RPGCharacterSheet.Models
             get => _proficient;
             set
             {
-                if (_proficient && !value)
-                {
-                    Modifier -= ProficiencyModifier.Modifier;
-                } else if (!_proficient && value)
-                {
-                    Modifier += ProficiencyModifier.Modifier;
-                }
                 _proficient = value;
+                if (!_proficient)
+                {
+                    Expert = false;
+                }
+                Modifier = CalculateModifier();
                 OnPropertyChanged(nameof(Proficient));
             }
         }
@@ -86,7 +79,15 @@ namespace RPGCharacterSheet.Models
             get => _expert;
             set
             {
-                _expert = value;
+                if (Proficient)
+                {
+                    _expert = value;
+                }
+                else
+                {
+                    _expert = false;
+                }
+                Modifier = CalculateModifier();
                 OnPropertyChanged(nameof(Expert));
                 OnPropertyChanged(nameof(Modifier));
             }
@@ -119,7 +120,14 @@ namespace RPGCharacterSheet.Models
 
             if (Proficient && ProficiencyModifier != null)
             {
-                result += ProficiencyModifier.Modifier;
+                if (Expert)
+                {
+                    result += ProficiencyModifier.Modifier * 2;
+                }
+                else
+                {
+                    result += ProficiencyModifier.Modifier;
+                }
             }
 
             return result;

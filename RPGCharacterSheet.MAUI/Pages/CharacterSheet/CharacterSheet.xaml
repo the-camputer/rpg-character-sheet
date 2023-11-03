@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:local="clr-namespace:RPGCharacterSheet"
+             xmlns:dto="clr-namespace:RPGCharacterSheet.Models;assembly=RPGCharacterSheet"
              x:Class="RPGCharacterSheet.Pages.CharacterSheet"
              Title="CharacterSheet">
     <ContentPage.Resources>
@@ -126,7 +127,7 @@
             <Grid RowDefinitions="500, 500, 500" RowSpacing="10" ColumnDefinitions="400, 400, 400">
                 <HorizontalStackLayout Grid.Row="0" Grid.RowSpan="2" Spacing="10">
                     <VerticalStackLayout  MinimumWidthRequest="125">
-                        <ListView ItemsSource="{Binding AbilityScores}" HorizontalOptions="Center">
+                        <ListView ItemsSource="{Binding AbilityScores}" HorizontalOptions="Center" x:Name="AbilityScores">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -151,7 +152,7 @@
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
                             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                                <CheckBox IsChecked="{Binding Inspiration, Mode=TwoWay}"/>
+                                <CheckBox IsChecked="{Binding Inspiration, Mode=TwoWay}" x:Name="Inspiration"/>
                                 <Label Text="Inspiration" FontSize="Caption" VerticalOptions="Center"/>
                             </HorizontalStackLayout>
                         </Border>
@@ -161,7 +162,7 @@
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
                                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                                    <Entry Text="{Binding Proficiency, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}"  IsEnabled="True" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
+                                    <Entry Text="{Binding Proficiency, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}"  x:Name="Proficiency" IsEnabled="True" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                     <Label Text="Proficiency Bonus" FontSize="Caption" VerticalOptions="Center"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
@@ -171,7 +172,7 @@
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
-                                <ListView ItemsSource="{Binding SavingThrows}" HorizontalOptions="Center">
+                                <ListView ItemsSource="{Binding SavingThrows}" HorizontalOptions="Center" x:Name="SavingThrows">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
@@ -192,12 +193,13 @@
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
-                                <ListView ItemsSource="{Binding SkillChecks}" HorizontalOptions="Center">
+                                <ListView ItemsSource="{Binding SkillChecks}" HorizontalOptions="Center" x:Name="Skills">
                                     <ListView.ItemTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate x:DataType="dto:Skill">
                                             <ViewCell>
-                                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" HeightRequest="27">
-                                                    <CheckBox IsChecked="{Binding Proficient}"/>
+                                                <HorizontalStackLayout HorizontalOptions="Center" HeightRequest="27">
+                                                    <CheckBox IsChecked="{Binding Proficient, Mode=TwoWay}" ToolTipProperties.Text="proficient"/>
+                                                    <CheckBox IsChecked="{Binding Expert, Mode=TwoWay}" IsEnabled="{Binding Proficient}" ToolTipProperties.Text="expert"/>
                                                     <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                                     <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
                                                 </HorizontalStackLayout>

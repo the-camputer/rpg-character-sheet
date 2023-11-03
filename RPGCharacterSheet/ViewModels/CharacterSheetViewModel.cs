@@ -13,7 +13,7 @@ namespace RPGCharacterSheet.ViewModels
         ObservableCollection<string> _alignments;
         public ObservableCollection<string> Alignments { get { return _alignments; } }
 
-        private CharacterData _characterData;
+        private readonly CharacterData _characterData;
 
         #region ChangeableProperties
         public string CharacterName
@@ -235,12 +235,12 @@ namespace RPGCharacterSheet.ViewModels
                 "CE"
             };
 
-            AbilityScore _str = new AbilityScore { Name = "Strength", Score = 10 };
-            AbilityScore _dex = new AbilityScore { Name = "Dexterity", Score = 10 };
-            AbilityScore _con = new AbilityScore { Name = "Constitution", Score = 10 };
-            AbilityScore _int = new AbilityScore { Name = "Intelligence", Score = 10 };
-            AbilityScore _wis = new AbilityScore { Name = "Wisdom", Score = 10 };
-            AbilityScore _cha = new AbilityScore { Name = "Charisma", Score = 10 };
+            AbilityScore _str = new() { Name = "Strength", Score = 10 };
+            AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
+            AbilityScore _con = new() { Name = "Constitution", Score = 10 };
+            AbilityScore _int = new() { Name = "Intelligence", Score = 10 };
+            AbilityScore _wis = new() { Name = "Wisdom", Score = 10 };
+            AbilityScore _cha = new() { Name = "Charisma", Score = 10 };
 
 
             _characterData.AbilityScores.AddRange(new List<AbilityScore> { _str, _dex, _con, _int, _wis, _cha });

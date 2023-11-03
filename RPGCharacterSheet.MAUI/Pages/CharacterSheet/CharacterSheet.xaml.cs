@@ -11,5 +11,6 @@ public partial class CharacterSheet : ContentPage
     {
         BindingContext = new CharacterSheetViewModel();
         InitializeComponent();
-	}
+        
+    }
 }
