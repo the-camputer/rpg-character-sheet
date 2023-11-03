@@ -187,6 +187,16 @@ namespace RPGCharacterSheet.ViewModels
             }
         }
 
+        public bool Inspiration
+        {
+            get => _characterData.Inspiration;
+            set
+            {
+                _characterData.Inspiration = value;
+                OnPropertyChanged(nameof(Inspiration));
+            }
+        }
+
         private ObservableCollection<AbilityScore> _abilityScores;
         public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
 

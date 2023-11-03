@@ -123,8 +123,8 @@
                     </FlexLayout>
                 </VerticalStackLayout>
             </Border>
-            <Grid RowDefinitions="500, 500, 500" RowSpacing="10" ColumnDefinitions="400, 400, 400" ColumnSpacing="10">
-                <HorizontalStackLayout Grid.Row="0" Grid.RowSpan="2">
+            <Grid RowDefinitions="500, 500, 500" RowSpacing="10" ColumnDefinitions="400, 400, 400">
+                <HorizontalStackLayout Grid.Row="0" Grid.RowSpan="2" Spacing="10">
                     <VerticalStackLayout  MinimumWidthRequest="125">
                         <ListView ItemsSource="{Binding AbilityScores}" HorizontalOptions="Center">
                             <ListView.ItemTemplate>
@@ -137,7 +137,7 @@
                                             <VerticalStackLayout Spacing="10">
                                                 <Label Text="{Binding Name}" FontSize="Caption" HorizontalOptions="Center"/>
                                                 <Entry Text="{Binding Score, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" WidthRequest="75" FontSize="Small" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                                                <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                                <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="35" MinimumWidthRequest="35" HeightRequest="35" MinimumHeightRequest="35"/>
                                             </VerticalStackLayout>
                                         </Border>
                                     </ViewCell>
@@ -145,10 +145,19 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </VerticalStackLayout>
-                    <VerticalStackLayout WidthRequest="265">
-                        <Border Stroke="LightGray" Padding="0,10">
+                    <VerticalStackLayout WidthRequest="250" Spacing="10">
+                        <Border Stroke="LightGray" Padding="0,10" HeightRequest="45">
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="10" />
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                <CheckBox IsChecked="{Binding Inspiration, Mode=TwoWay}"/>
+                                <Label Text="Inspiration" FontSize="Caption" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                        <Border Stroke="LightGray" Padding="0,10" HeightRequest="45>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
                                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
@@ -157,7 +166,7 @@
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Border>
-                        <Border Stroke="LightGray" Padding="0,10" Margin="0,0,0,10" >
+                        <Border Stroke="LightGray" Padding="0,10">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
@@ -166,7 +175,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" HeightRequest="27">
                                                     <CheckBox IsChecked="{Binding Proficient}"/>
                                                     <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                                     <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
@@ -178,16 +187,16 @@
                                 <Label Text="Saving Throws" FontSize="Caption" HorizontalOptions="Center"/>
                             </VerticalStackLayout>
                         </Border>
-                        <Border Stroke="LightGray" Padding="0,10" Margin="0,0,0,10">
+                        <Border Stroke="LightGray" Padding="0,10">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
-                            <VerticalStackLayout Spacing="0">
+                            <VerticalStackLayout Spacing="10">
                                 <ListView ItemsSource="{Binding SkillChecks}" HorizontalOptions="Center">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" HeightRequest="27">
                                                     <CheckBox IsChecked="{Binding Proficient}"/>
                                                     <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                                     <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
