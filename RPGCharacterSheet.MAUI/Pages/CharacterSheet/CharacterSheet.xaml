@@ -17,6 +17,11 @@
             <Setter Property="Wrap" Value="Wrap" />
             <Setter Property="Margin" Value="0,10" />
         </Style>
+        <Style x:Key="BioInfo" TargetType="VerticalStackLayout">
+            <Setter Property="Spacing" Value="5"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="MinimumWidthRequest" Value="100"/>
+        </Style>
         <local:BlankAs0Converter x:Key="BlankAs0Converter"/>
     </ContentPage.Resources>
     <ScrollView>
@@ -84,11 +89,11 @@
                             <Label Text="Ancestry" HorizontalOptions="Center" />
                             <Entry x:Name="Ancestry" Text="{Binding Ancestry, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Gender" HorizontalOptions="Center" />
                             <Entry x:Name="Gender" Text="{Binding Gender, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Age" HorizontalOptions="Center" />
                             <Entry x:Name="Age" Text="{Binding Age, Mode=TwoWay}">
                                 <Entry.Behaviors>
@@ -101,23 +106,23 @@
                                 </Entry.Behaviors>
                             </Entry>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Height" HorizontalOptions="Center" />
                             <Entry x:Name="Height" Text="{Binding Height, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Weight" HorizontalOptions="Center" />
                             <Entry x:Name="Weight" Text="{Binding Weight, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Skin" HorizontalOptions="Center" />
                             <Entry x:Name="Skin" Text="{Binding Skin, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Hair" HorizontalOptions="Center" />
                             <Entry x:Name="Hair" Text="{Binding Hair, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Eyes" HorizontalOptions="Center" />
                             <Entry x:Name="Eyes" Text="{Binding Eyes, Mode=TwoWay}"/>
                         </VerticalStackLayout>
@@ -177,7 +182,7 @@
                                         <DataTemplate>
                                             <ViewCell>
                                                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" HeightRequest="27">
-                                                    <CheckBox IsChecked="{Binding Proficient}"/>
+                                                    <CheckBox IsChecked="{Binding Proficient}" ToolTipProperties.Text="proficient"/>
                                                     <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                                     <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
                                                 </HorizontalStackLayout>
