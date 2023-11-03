@@ -155,7 +155,7 @@
                                 <Label Text="Inspiration" FontSize="Caption" VerticalOptions="Center"/>
                             </HorizontalStackLayout>
                         </Border>
-                        <Border Stroke="LightGray" Padding="0,10" HeightRequest="45>
+                        <Border Stroke="LightGray" Padding="0,10" HeightRequest="45">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
