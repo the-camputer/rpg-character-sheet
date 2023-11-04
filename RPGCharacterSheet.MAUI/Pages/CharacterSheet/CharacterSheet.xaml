@@ -200,7 +200,7 @@
                             <VerticalStackLayout Spacing="10">
                                 <ListView ItemsSource="{Binding SkillChecks}" HorizontalOptions="Center" x:Name="Skills">
                                     <ListView.ItemTemplate>
-                                        <DataTemplate x:DataType="dto:Skill">
+                                        <DataTemplate>
                                             <ViewCell>
                                                 <HorizontalStackLayout HorizontalOptions="Center" HeightRequest="27">
                                                     <CheckBox IsChecked="{Binding Proficient, Mode=TwoWay}" ToolTipProperties.Text="proficient"/>
