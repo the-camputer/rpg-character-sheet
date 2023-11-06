@@ -43,6 +43,34 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal(0, character.SkillChecks.Find(skill => skill.Name == "Perception")?.Modifier);
         }
 
+        [Fact]
+        public void Expert_Cannot_Be_True_If_Not_Proficient()
+        {
+            CharacterData character = generateCharater();
+            Assert.Equal(false, character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+
+            character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
+
+            Assert.Equal(false, character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+
+            character.SkillChecks.Find(skill => skill.Name == "Performance").Proficient = true;
+            character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
+
+            Assert.Equal(true, character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+        }
+
+        [Fact]
+        public void Setting_Expert_Doubles_Proficiency_Bonus()
+        {
+            CharacterData character = generateCharater();
+            character.ProficiencyBonus.Modifier = 3;
+
+            character.SkillChecks.Find(skill => skill.Name == "Performance").Proficient = true;
+            character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
+
+            Assert.Equal(6, character.SkillChecks.Find(skill => skill.Name == "Performance").Modifier);
+        }
+
         private CharacterData generateCharater()
         {
             CharacterData character = new()
