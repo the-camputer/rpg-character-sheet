@@ -106,11 +106,5 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal(expectedSkillCheckName, characterData.SkillChecks[index].Name);
             Assert.Equal(expectedAbilityScore, characterData.SkillChecks[index].BaseAbilityScore.Name);
         }
-
-        [Fact]
-        public void Updating_Ability_Score_Updates_Skills()
-        {
-
-        }
     }
 }
