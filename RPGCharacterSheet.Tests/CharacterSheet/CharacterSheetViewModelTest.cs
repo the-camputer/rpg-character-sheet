@@ -16,6 +16,8 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             viewModel.PlayerName = "Lewis";
             viewModel.Class = "Bardbarian";
             viewModel.Level = 19;
+            viewModel.Proficiency = 6;
+            viewModel.Inspiration = true;
             viewModel.Background = "Baker";
             viewModel.Homeland = "The Shire";
             viewModel.Ancestry = "Halfling";
@@ -33,6 +35,8 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal("Lewis", characterData.PlayerName);
             Assert.Equal("Bardbarian", characterData.Class);
             Assert.Equal(19, characterData.Level);
+            Assert.Equal(6, characterData.ProficiencyBonus.Modifier);
+            Assert.True(characterData.Inspiration);
             Assert.Equal("Baker", characterData.Background);
             Assert.Equal("The Shire", characterData.Homeland);
             Assert.Equal("Halfling", characterData.Ancestry);
