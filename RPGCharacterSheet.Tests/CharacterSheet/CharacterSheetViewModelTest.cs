@@ -9,13 +9,15 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         public void Updating_VM_Updates_CharacterData()
         {
             CharacterData characterData = new();
-            CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
+            CharacterSheetViewModel viewModel = new(characterData);
             
             viewModel.CharacterName = "Balthazar";
             viewModel.Alignment = "LG";
             viewModel.PlayerName = "Lewis";
             viewModel.Class = "Bardbarian";
             viewModel.Level = 19;
+            viewModel.Proficiency = 6;
+            viewModel.Inspiration = true;
             viewModel.Background = "Baker";
             viewModel.Homeland = "The Shire";
             viewModel.Ancestry = "Halfling";
@@ -33,6 +35,8 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal("Lewis", characterData.PlayerName);
             Assert.Equal("Bardbarian", characterData.Class);
             Assert.Equal(19, characterData.Level);
+            Assert.Equal(6, characterData.ProficiencyBonus.Modifier);
+            Assert.True(characterData.Inspiration);
             Assert.Equal("Baker", characterData.Background);
             Assert.Equal("The Shire", characterData.Homeland);
             Assert.Equal("Halfling", characterData.Ancestry);
@@ -105,12 +109,6 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
 
             Assert.Equal(expectedSkillCheckName, characterData.SkillChecks[index].Name);
             Assert.Equal(expectedAbilityScore, characterData.SkillChecks[index].BaseAbilityScore.Name);
-        }
-
-        [Fact]
-        public void Updating_Ability_Score_Updates_Skills()
-        {
-
         }
     }
 }

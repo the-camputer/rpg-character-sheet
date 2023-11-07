@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:RPGCharacterSheet"
+             xmlns:dto="clr-namespace:RPGCharacterSheet.Models;assembly=RPGCharacterSheet"
              x:Class="RPGCharacterSheet.Pages.CharacterSheet"
              Title="CharacterSheet">
     <ContentPage.Resources>
@@ -15,6 +17,12 @@
             <Setter Property="Wrap" Value="Wrap" />
             <Setter Property="Margin" Value="0,10" />
         </Style>
+        <Style x:Key="BioInfo" TargetType="VerticalStackLayout">
+            <Setter Property="Spacing" Value="5"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="MinimumWidthRequest" Value="100"/>
+        </Style>
+        <local:BlankAs0Converter x:Key="BlankAs0Converter"/>
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
@@ -81,11 +89,11 @@
                             <Label Text="Ancestry" HorizontalOptions="Center" />
                             <Entry x:Name="Ancestry" Text="{Binding Ancestry, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Gender" HorizontalOptions="Center" />
                             <Entry x:Name="Gender" Text="{Binding Gender, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Age" HorizontalOptions="Center" />
                             <Entry x:Name="Age" Text="{Binding Age, Mode=TwoWay}">
                                 <Entry.Behaviors>
@@ -98,33 +106,33 @@
                                 </Entry.Behaviors>
                             </Entry>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Height" HorizontalOptions="Center" />
                             <Entry x:Name="Height" Text="{Binding Height, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Weight" HorizontalOptions="Center" />
                             <Entry x:Name="Weight" Text="{Binding Weight, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Skin" HorizontalOptions="Center" />
                             <Entry x:Name="Skin" Text="{Binding Skin, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Hair" HorizontalOptions="Center" />
                             <Entry x:Name="Hair" Text="{Binding Hair, Mode=TwoWay}"/>
                         </VerticalStackLayout>
-                        <VerticalStackLayout Spacing="5" Padding="10,0" MinimumWidthRequest="100">
+                        <VerticalStackLayout Style="{StaticResource BioInfo}">
                             <Label Text="Eyes" HorizontalOptions="Center" />
                             <Entry x:Name="Eyes" Text="{Binding Eyes, Mode=TwoWay}"/>
                         </VerticalStackLayout>
                     </FlexLayout>
                 </VerticalStackLayout>
             </Border>
-            <Grid RowDefinitions="500, 500, 500" ColumnDefinitions="400, 400, 400">
-                <HorizontalStackLayout Grid.Row="0" Grid.RowSpan="2">
-                    <VerticalStackLayout  MinimumWidthRequest="125" Margin="10,0">
-                        <ListView ItemsSource="{Binding AbilityScores}" HorizontalOptions="Center">
+            <Grid RowDefinitions="500, 500, 500" RowSpacing="10" ColumnDefinitions="400, 400, 400">
+                <HorizontalStackLayout Grid.Row="0" Grid.RowSpan="2" Spacing="10">
+                    <VerticalStackLayout  MinimumWidthRequest="125">
+                        <ListView ItemsSource="{Binding AbilityScores}" HorizontalOptions="Center" x:Name="AbilityScores">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -134,8 +142,8 @@
                                             </Border.StrokeShape>
                                             <VerticalStackLayout Spacing="10">
                                                 <Label Text="{Binding Name}" FontSize="Caption" HorizontalOptions="Center"/>
-                                                <Entry Text="{Binding Score, Mode=TwoWay}" WidthRequest="75" FontSize="Small" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                                                <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                                <Entry Text="{Binding Score, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" WidthRequest="75" FontSize="Small" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                                <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="35" MinimumWidthRequest="35" HeightRequest="35" MinimumHeightRequest="35"/>
                                             </VerticalStackLayout>
                                         </Border>
                                     </ViewCell>
@@ -143,17 +151,38 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </VerticalStackLayout>
-                    <VerticalStackLayout>
-                        <Border Stroke="LightGray" WidthRequest="150" Padding="0,10" Margin="0,0,0,10">
+                    <VerticalStackLayout WidthRequest="250" Spacing="10">
+                        <Border Stroke="LightGray" Padding="0,10" HeightRequest="45">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                <CheckBox IsChecked="{Binding Inspiration, Mode=TwoWay}" x:Name="Inspiration"/>
+                                <Label Text="Inspiration" FontSize="Caption" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                        <Border Stroke="LightGray" Padding="0,10" HeightRequest="45">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="10">
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                    <Entry Text="{Binding Proficiency, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}"  x:Name="Proficiency" IsEnabled="True" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
+                                    <Label Text="Proficiency Bonus" FontSize="Caption" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Stroke="LightGray" Padding="0,10">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
-                                <ListView ItemsSource="{Binding SavingThrows}" HorizontalOptions="Center">
+                                <ListView ItemsSource="{Binding SavingThrows}" HorizontalOptions="Center" x:Name="SavingThrows">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" HeightRequest="27">
+                                                    <CheckBox IsChecked="{Binding Proficient}" ToolTipProperties.Text="proficient"/>
                                                     <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                                     <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
                                                 </HorizontalStackLayout>
@@ -164,17 +193,19 @@
                                 <Label Text="Saving Throws" FontSize="Caption" HorizontalOptions="Center"/>
                             </VerticalStackLayout>
                         </Border>
-                        <Border Stroke="LightGray" WidthRequest="150" Padding="0,10" Margin="0,0,0,10">
+                        <Border Stroke="LightGray" Padding="0,10">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
-                                <ListView ItemsSource="{Binding SkillChecks}" HorizontalOptions="Center">
+                                <ListView ItemsSource="{Binding SkillChecks}" HorizontalOptions="Center" x:Name="Skills">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                                                    <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25" />
+                                                <HorizontalStackLayout HorizontalOptions="Center" HeightRequest="27">
+                                                    <CheckBox IsChecked="{Binding Proficient, Mode=TwoWay}" ToolTipProperties.Text="proficient"/>
+                                                    <CheckBox IsChecked="{Binding Expert, Mode=TwoWay}" IsEnabled="{Binding Proficient}" ToolTipProperties.Text="expert"/>
+                                                    <Entry Text="{Binding Modifier}" IsEnabled="false" FontSize="Caption" HorizontalOptions="Center" HorizontalTextAlignment="Center" HeightRequest="25" MinimumHeightRequest="25"/>
                                                     <Label Text="{Binding Name}" FontSize="Caption" VerticalOptions="Center"/>
                                                 </HorizontalStackLayout>
                                             </ViewCell>
