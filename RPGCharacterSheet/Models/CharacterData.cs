@@ -24,16 +24,21 @@ namespace RPGCharacterSheet.Models
         public string Hair { get; set; }
         public string Eyes { get; set; }
         public int ExperiencePoints { get; set; }
-
         public List<AbilityScore> AbilityScores { get; set; }
-
         public List<Skill> SavingThrows { get; set; }
-
         public List<Skill> SkillChecks { get; set; }
-
         public Skill ProficiencyBonus { get; set; }
-
         public bool Inspiration { get; set; }
+        public int ArmorClass { get; set; }
+        public int Initiative { get; set; }
+        public int Speed { get; set; }
+        public int HitPointMax { get; set; }
+        public int HitPoints { get; set; }
+        public int TemporaryHitPoints { get; set; }
+        public int HitDiceCount { get; set; }
+        public string HitDiceType { get; set; }
+        public int DeathSaveSuccesses { get; set; }
+        public int DeathSaveFailures {  get; set; }
         public CharacterData() 
         {
             Level = 1;
