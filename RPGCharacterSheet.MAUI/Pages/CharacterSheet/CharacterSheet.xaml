@@ -223,8 +223,8 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
-                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" WidthRequest="100">
-                                <Entry Text="{Binding ArmorClass, Converter={StaticResource BlankAs0Converter}}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" WidthRequest="126">
+                                <Entry Text="{Binding ArmorClass, Mode=TwoWay, Converter={StaticResource BlankAs0Converter,BlankAs0Converter}}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                 <Label Text="Armor Class" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
                             </VerticalStackLayout>
                         </Border>
@@ -232,8 +232,8 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
-                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" WidthRequest="100">
-                                <Entry Text="{Binding Initiative, Converter={StaticResource BlankAs0Converter}}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" WidthRequest="126">
+                                <Entry Text="{Binding Initiative, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                 <Label Text="Initiative" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
                             </VerticalStackLayout>
                         </Border>
@@ -241,9 +241,46 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
-                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" WidthRequest="100">
-                                <Entry Text="{Binding Speed, Converter={StaticResource BlankAs0Converter}}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" WidthRequest="126">
+                                <Entry Text="{Binding Speed, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                 <Label Text="Speed" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </HorizontalStackLayout>
+                    <Border Stroke="LightGray" Padding="10" WidthRequest="400">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                                <Label Text="Current Hit Points:" FontSize="Caption" VerticalOptions="Center" Margin="0,0,10,0"/>
+                                <Entry Text="{Binding HitPoints, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" HorizontalTextAlignment="Center" HeightRequest="45" MinimumHeightRequest="45" MinimumWidthRequest="100"/>
+                            </FlexLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                                <Label Text="Hit Point Maximum:" FontSize="Caption" VerticalOptions="Center" Margin="0,0,10,0"/>
+                                <Entry Text="{Binding HitPointMax, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" HorizontalTextAlignment="Center" HeightRequest="45" MinimumHeightRequest="45" MinimumWidthRequest="100"/>
+                            </FlexLayout>
+                            <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                                <Label Text="Temporary Hit Points:" FontSize="Caption" VerticalOptions="Center" Margin="0,0,10,0"/>
+                                <Entry Text="{Binding TemporaryHitPoints, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" HorizontalTextAlignment="Center" HeightRequest="45" MinimumHeightRequest="45" MinimumWidthRequest="100"/>
+                            </FlexLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                    <HorizontalStackLayout Spacing="10" WidthRequest="400">
+                        <Border Stroke="LightGray" Padding="10" WidthRequest="180">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Hit Dice" FontSize="Caption" HorizontalOptions="Center"/>
+                                <HorizontalStackLayout Spacing="10" WidthRequest="180">
+                                    <Label Text="Total:" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Entry Text="{Binding HitDiceCount, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" FontSize="Caption" HorizontalTextAlignment="Center" HeightRequest="35" MinimumHeightRequest="35"/>
+                                    <Picker
+                                        ItemsSource="{Binding HitDiceTypes}"
+                                        SelectedItem="{Binding HitDiceType, Mode=TwoWay}"
+                                    />
+                                </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Border>
                     </HorizontalStackLayout>
