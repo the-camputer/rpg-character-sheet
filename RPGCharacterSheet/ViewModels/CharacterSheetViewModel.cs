@@ -18,6 +18,15 @@ namespace RPGCharacterSheet.ViewModels
 
         private readonly CharacterData _characterData;
 
+        private ObservableCollection<AbilityScore> _abilityScores;
+        public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
+
+        private ObservableCollection<Skill> _savingThrows;
+        public ObservableCollection<Skill> SavingThrows { get { return _savingThrows; } }
+
+        private ObservableCollection<Skill> _skillChecks;
+        public ObservableCollection<Skill> SkillChecks { get { return _skillChecks; } }
+
         #region ChangeableProperties
         public string CharacterName
         {
@@ -199,15 +208,6 @@ namespace RPGCharacterSheet.ViewModels
                 OnPropertyChanged(nameof(Inspiration));
             }
         }
-
-        private ObservableCollection<AbilityScore> _abilityScores;
-        public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
-
-        private ObservableCollection<Skill> _savingThrows;
-        public ObservableCollection<Skill> SavingThrows { get { return _savingThrows; } }
-
-        private ObservableCollection<Skill> _skillChecks;
-        public ObservableCollection<Skill> SkillChecks {  get { return _skillChecks; } }
 
         public int ArmorClass
         {

@@ -271,19 +271,37 @@
                         </VerticalStackLayout>
                     </Border>
                     <HorizontalStackLayout Spacing="10" WidthRequest="400">
-                        <Border Stroke="LightGray" Padding="10" WidthRequest="180">
+                        <Border Stroke="LightGray" Padding="10" WidthRequest="195">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
                             <VerticalStackLayout Spacing="10">
                                 <Label Text="Hit Dice" FontSize="Caption" HorizontalOptions="Center"/>
-                                <HorizontalStackLayout Spacing="10" WidthRequest="180">
-                                    <Label Text="Total:" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                                     <Entry Text="{Binding HitDiceCount, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" FontSize="Caption" HorizontalTextAlignment="Center" HeightRequest="35" MinimumHeightRequest="35"/>
                                     <Picker
                                         ItemsSource="{Binding HitDiceTypes}"
                                         SelectedItem="{Binding HitDiceType, Mode=TwoWay}"
+                                        HorizontalOptions="Center"
                                     />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Stroke="LightGray" Padding="10" WidthRequest="195">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Death Saves" FontSize="Caption" HorizontalOptions="Center"/>
+                                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="End">
+                                    <Label Text="Successes" FontSize="Caption" VerticalOptions="Center"/>
+                                    <Stepper Minimum="0" Maximum="3" Increment="1" HorizontalOptions="Center" Value="{Binding DeathSaveSuccesses}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding DeathSaveSuccesses}" FontSize="Caption" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="End">
+                                    <Label Text="Failures" FontSize="Caption" VerticalOptions="Center"/>
+                                    <Stepper Minimum="0" Maximum="3" Increment="1" HorizontalOptions="Center" Value="{Binding DeathSaveFailures}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding DeathSaveFailures}" FontSize="Caption" VerticalOptions="Center"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Border>
