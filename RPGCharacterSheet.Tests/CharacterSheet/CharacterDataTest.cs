@@ -47,16 +47,16 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         public void Expert_Cannot_Be_True_If_Not_Proficient()
         {
             CharacterData character = generateCharater();
-            Assert.Equal(false, character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+            Assert.False(character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
 
             character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
 
-            Assert.Equal(false, character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+            Assert.False(character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
 
             character.SkillChecks.Find(skill => skill.Name == "Performance").Proficient = true;
             character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
 
-            Assert.Equal(true, character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+            Assert.True(character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
         }
 
         [Fact]

@@ -29,6 +29,17 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             viewModel.Hair = "Ashen";
             viewModel.Eyes = "Mulled wine";
             viewModel.ExperiencePoints = 350000;
+            viewModel.ArmorClass = 14;
+            viewModel.Initiative = 6;
+            viewModel.Speed = 30;
+            viewModel.HitPoints = 13;
+            viewModel.HitPointMax = 132;
+            viewModel.TemporaryHitPoints = 24;
+            viewModel.HitDiceCount = 19;
+            viewModel.HitDiceType = "d10";
+            viewModel.DeathSaveSuccesses = 1;
+            viewModel.DeathSaveFailures = 0;
+
 
             Assert.Equal("Balthazar", characterData.CharacterName);
             Assert.Equal("LG", characterData.Alignment);
@@ -48,6 +59,16 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal("Ashen", characterData.Hair);
             Assert.Equal("Mulled wine", characterData.Eyes);
             Assert.Equal(350000, characterData.ExperiencePoints);
+            Assert.Equal(14, characterData.ArmorClass);
+            Assert.Equal(6, characterData.Initiative);
+            Assert.Equal(30, characterData.Speed);
+            Assert.Equal(13, characterData.HitPoints);
+            Assert.Equal(132, characterData.HitPointMax);
+            Assert.Equal(24, characterData.TemporaryHitPoints);
+            Assert.Equal(19, characterData.HitDiceCount);
+            Assert.Equal("d10", characterData.HitDiceType);
+            Assert.Equal(1, characterData.DeathSaveSuccesses);
+            Assert.Equal(0, characterData.DeathSaveFailures);
         }
 
         [Theory]

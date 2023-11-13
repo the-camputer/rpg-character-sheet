@@ -13,7 +13,19 @@ namespace RPGCharacterSheet.ViewModels
         ObservableCollection<string> _alignments;
         public ObservableCollection<string> Alignments { get { return _alignments; } }
 
+        ObservableCollection<string> _hitDiceTypes;
+        public ObservableCollection<string> HitDiceTypes { get { return _hitDiceTypes; } }
+
         private readonly CharacterData _characterData;
+
+        private ObservableCollection<AbilityScore> _abilityScores;
+        public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
+
+        private ObservableCollection<Skill> _savingThrows;
+        public ObservableCollection<Skill> SavingThrows { get { return _savingThrows; } }
+
+        private ObservableCollection<Skill> _skillChecks;
+        public ObservableCollection<Skill> SkillChecks { get { return _skillChecks; } }
 
         #region ChangeableProperties
         public string CharacterName
@@ -197,15 +209,105 @@ namespace RPGCharacterSheet.ViewModels
             }
         }
 
-        private ObservableCollection<AbilityScore> _abilityScores;
-        public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
+        public int ArmorClass
+        {
+            get => _characterData.ArmorClass;
+            set
+            {
+                _characterData.ArmorClass = value;
+                OnPropertyChanged(nameof(ArmorClass));
+            }
+        }
 
-        private ObservableCollection<Skill> _savingThrows;
-        public ObservableCollection<Skill> SavingThrows { get { return _savingThrows; } }
+        public int Initiative
+        {
+            get => _characterData.Initiative;
+            set
+            {
+                _characterData.Initiative = value;
+                OnPropertyChanged(nameof(Initiative));
+            }
+        }
 
-        private ObservableCollection<Skill> _skillChecks;
-        public ObservableCollection<Skill> SkillChecks {  get { return _skillChecks; } }
+        public int Speed
+        {
+            get => _characterData.Speed;
+            set
+            {
+                _characterData.Speed = value;
+                OnPropertyChanged(nameof(Speed));
+            }
+        }
 
+        public int HitPointMax
+        {
+            get => _characterData.HitPointMax;
+            set
+            {
+                _characterData.HitPointMax = value;
+                OnPropertyChanged(nameof(HitPointMax));
+            }
+        }
+
+        public int HitPoints
+        {
+            get => _characterData.HitPoints;
+            set
+            {
+                _characterData.HitPoints = value;
+                OnPropertyChanged(nameof(HitPoints));
+            }
+        }
+
+        public int TemporaryHitPoints
+        {
+            get => _characterData.TemporaryHitPoints;
+            set
+            {
+                _characterData.TemporaryHitPoints = value;
+                OnPropertyChanged(nameof(TemporaryHitPoints));
+            }
+        }
+
+        public int HitDiceCount
+        {
+            get => _characterData.HitDiceCount;
+            set
+            {
+                _characterData.HitDiceCount = value;
+                OnPropertyChanged(nameof(HitDiceCount));
+            }
+        }
+
+        public string HitDiceType
+        {
+            get => _characterData.HitDiceType;
+            set
+            {
+                _characterData.HitDiceType = value;
+                OnPropertyChanged(nameof(HitDiceType));
+            }
+        }
+
+        public int DeathSaveSuccesses
+        {
+            get => _characterData.DeathSaveSuccesses;
+            set
+            {
+                _characterData.DeathSaveSuccesses = value;
+                OnPropertyChanged(nameof(DeathSaveSuccesses));
+            }
+        }
+
+        public int DeathSaveFailures
+        {
+            get => _characterData.DeathSaveFailures;
+            set
+            {
+                _characterData.DeathSaveFailures = value;
+                OnPropertyChanged(nameof(DeathSaveFailures));
+            }
+        }
         #endregion
 
         public CharacterSheetViewModel()
@@ -233,6 +335,14 @@ namespace RPGCharacterSheet.ViewModels
                 "LE",
                 "NE",
                 "CE"
+            };
+
+            _hitDiceTypes = new ObservableCollection<string>()
+            {
+                "d6",
+                "d8",
+                "d10",
+                "d12"
             };
 
             AbilityScore _str = new() { Name = "Strength", Score = 10 };
