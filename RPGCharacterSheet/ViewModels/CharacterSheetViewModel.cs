@@ -308,6 +308,46 @@ namespace RPGCharacterSheet.ViewModels
                 OnPropertyChanged(nameof(DeathSaveFailures));
             }
         }
+
+        public string Personality
+        {
+            get => _characterData.Personality;
+            set
+            {
+                _characterData.Personality = value;
+                OnPropertyChanged(nameof(Personality));
+            }
+        }
+
+        public string Ideals
+        {
+            get => _characterData.Personality;
+            set
+            {
+                _characterData.Personality = value;
+                OnPropertyChanged(nameof(Ideals));
+            }
+        }
+
+        public string Bonds
+        {
+            get => _characterData.Bonds;
+            set
+            {
+                _characterData.Bonds = value;
+                OnPropertyChanged(nameof(Bonds));
+            }
+        }
+
+        public string Flaws
+        {
+            get => _characterData.Flaws;
+            set
+            {
+                _characterData.Flaws = value;
+                OnPropertyChanged(nameof(Flaws));
+            }
+        }
         #endregion
 
         public CharacterSheetViewModel()

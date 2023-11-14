@@ -39,6 +39,11 @@ namespace RPGCharacterSheet.Models
         public string HitDiceType { get; set; }
         public int DeathSaveSuccesses { get; set; }
         public int DeathSaveFailures {  get; set; }
+        public string Personality { get; set; }
+        public string Ideals { get; set; }
+        public string Bonds { get; set; }
+        public string Flaws { get; set; }
+
         public CharacterData() 
         {
             Level = 1;
