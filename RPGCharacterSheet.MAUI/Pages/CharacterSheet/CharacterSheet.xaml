@@ -313,7 +313,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
-                            <Editor Text="{Binding Personality}" HeightRequest="75" FontSize="12" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
+                            <Editor Text="{Binding Personality, Mode=TwoWay}" HeightRequest="75" FontSize="12" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Personality" FontSize="9" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
@@ -322,7 +322,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
-                            <Editor Text="{Binding Ideals}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
+                            <Editor Text="{Binding Ideals, Mode=TwoWay}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Ideals" FontSize="9" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
@@ -331,7 +331,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
-                            <Editor Text="{Binding Bonds}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
+                            <Editor Text="{Binding Bonds, Mode=TwoWay}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Bonds" FontSize="9" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
@@ -340,7 +340,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
-                            <Editor Text="{Binding Flaws}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
+                            <Editor Text="{Binding Flaws, Mode=TwoWay}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Flaws" FontSize="9" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>

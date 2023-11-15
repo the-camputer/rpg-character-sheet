@@ -39,6 +39,10 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             viewModel.HitDiceType = "d10";
             viewModel.DeathSaveSuccesses = 1;
             viewModel.DeathSaveFailures = 0;
+            viewModel.Personality = "Test 1";
+            viewModel.Ideals = "Test 2";
+            viewModel.Bonds = "Test 3";
+            viewModel.Flaws = "Test 4";
 
 
             Assert.Equal("Balthazar", characterData.CharacterName);
@@ -69,6 +73,10 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal("d10", characterData.HitDiceType);
             Assert.Equal(1, characterData.DeathSaveSuccesses);
             Assert.Equal(0, characterData.DeathSaveFailures);
+            Assert.Equal("Test 1", characterData.Personality);
+            Assert.Equal("Test 2", characterData.Ideals);
+            Assert.Equal("Test 3", characterData.Bonds);
+            Assert.Equal("Test 4", characterData.Flaws);
         }
 
         [Theory]

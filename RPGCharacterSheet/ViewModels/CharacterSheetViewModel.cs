@@ -321,10 +321,10 @@ namespace RPGCharacterSheet.ViewModels
 
         public string Ideals
         {
-            get => _characterData.Personality;
+            get => _characterData.Ideals;
             set
             {
-                _characterData.Personality = value;
+                _characterData.Ideals = value;
                 OnPropertyChanged(nameof(Ideals));
             }
         }
