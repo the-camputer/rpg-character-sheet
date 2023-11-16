@@ -44,6 +44,8 @@ namespace RPGCharacterSheet.Models
         public string Bonds { get; set; }
         public string Flaws { get; set; }
 
+        public List<Attack> Attacks { get; set; }
+
         public CharacterData() 
         {
             Level = 1;
@@ -53,6 +55,7 @@ namespace RPGCharacterSheet.Models
             SavingThrows = new List<Skill>();
             SkillChecks = new List<Skill>();
             ProficiencyBonus = new Skill { Name = "Proficiency", Modifier = 0 };
+            Attacks = new List<Attack>();
         }
 
         public AbilityScore GetAbilityScore(string scoreName)

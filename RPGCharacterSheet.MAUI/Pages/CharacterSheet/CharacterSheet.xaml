@@ -318,6 +318,49 @@
                             </VerticalStackLayout>
                         </Border>
                     </HorizontalStackLayout>
+                    <Border Stroke="LightGray" Padding="1" WidthRequest="375" HorizontalOptions="Start">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        <HorizontalStackLayout Spacing="0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                            <ListView ItemsSource="{Binding Attacks}" Header="Name">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Entry Text="{Binding Name}" Margin="0,5" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="125" HeightRequest="35" MinimumHeightRequest="35" FontSize="12"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Attacks}" Header="Atk" WidthRequest="50">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Entry Text="{Binding AttackModifier, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" Margin="0,5" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="50" HeightRequest="35" MinimumHeightRequest="35" FontSize="12"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Attacks}" Header="Damage" WidthRequest="75">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Entry Text="{Binding Damage}" Margin="0,5" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="75" HeightRequest="35" MinimumHeightRequest="35" FontSize="12"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Attacks}" Header="Dmg Type" WidthRequest="75">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Picker ItemsSource="{Binding DamageTypes}" Margin="0,5" SelectedItem="{Binding DamageType}" HeightRequest="35" MinimumHeightRequest="35" FontSize="10"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </HorizontalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="0" Grid.RowSpan="1" Grid.Column="2" WidthRequest="340" Spacing="5" HorizontalOptions="Start">
                     <Border Stroke="LightGray" WidthRequest="340" MinimumWidthRequest="200" HorizontalOptions="Start">

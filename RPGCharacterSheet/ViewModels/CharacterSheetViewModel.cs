@@ -30,6 +30,9 @@ namespace RPGCharacterSheet.ViewModels
         private ObservableCollection<Skill> _passiveSkills;
         public ObservableCollection<Skill> PassiveSkills { get => _passiveSkills; }
 
+        private ObservableCollection<Attack> _attacks;
+        public ObservableCollection<Attack> Attacks { get => _attacks; }
+
         #region ChangeableProperties
         private Skill _selectedPassiveSkill;
         public Skill SelectedPassiveSkill
@@ -362,6 +365,8 @@ namespace RPGCharacterSheet.ViewModels
                 OnPropertyChanged(nameof(Flaws));
             }
         }
+
+
         #endregion
 
         public CharacterSheetViewModel()
@@ -464,6 +469,13 @@ namespace RPGCharacterSheet.ViewModels
 
             _passiveSkills = new ObservableCollection<Skill>(new List<Skill>() { perception, insight, investigation });
             SelectedPassiveSkill = perception;
+
+            Attack attack1 = new Attack();
+            Attack attack2 = new Attack();
+            Attack attack3 = new Attack();
+
+            _characterData.Attacks.AddRange(new List<Attack>() { attack1, attack2, attack3 });
+            _attacks = new ObservableCollection<Attack>(_characterData.Attacks);
         }
 
         protected void OnPropertyChanged(string propertyName)
