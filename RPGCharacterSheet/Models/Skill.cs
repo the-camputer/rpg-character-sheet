@@ -93,9 +93,18 @@ namespace RPGCharacterSheet.Models
             }
         }
 
+        public int PassiveScore
+        {
+            get => 10 + Modifier;
+        }
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName == nameof(Modifier))
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PassiveScore)));
+            }
         }
 
         public void AbilityScoreModifierChanged(object sender, PropertyChangedEventArgs a)

@@ -11,23 +11,37 @@ namespace RPGCharacterSheet.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         ObservableCollection<string> _alignments;
-        public ObservableCollection<string> Alignments { get { return _alignments; } }
+        public ObservableCollection<string> Alignments { get => _alignments; }
 
         ObservableCollection<string> _hitDiceTypes;
-        public ObservableCollection<string> HitDiceTypes { get { return _hitDiceTypes; } }
+        public ObservableCollection<string> HitDiceTypes { get => _hitDiceTypes; }
 
         private readonly CharacterData _characterData;
 
         private ObservableCollection<AbilityScore> _abilityScores;
-        public ObservableCollection<AbilityScore> AbilityScores { get { return _abilityScores; } }
+        public ObservableCollection<AbilityScore> AbilityScores { get => _abilityScores; }
 
         private ObservableCollection<Skill> _savingThrows;
-        public ObservableCollection<Skill> SavingThrows { get { return _savingThrows; } }
+        public ObservableCollection<Skill> SavingThrows { get => _savingThrows; }
 
         private ObservableCollection<Skill> _skillChecks;
-        public ObservableCollection<Skill> SkillChecks { get { return _skillChecks; } }
+        public ObservableCollection<Skill> SkillChecks { get => _skillChecks; }
+
+        private ObservableCollection<Skill> _passiveSkills;
+        public ObservableCollection<Skill> PassiveSkills { get => _passiveSkills; }
 
         #region ChangeableProperties
+        private Skill _selectedPassiveSkill;
+        public Skill SelectedPassiveSkill
+        {
+            get => _selectedPassiveSkill;
+            set
+            {
+               _selectedPassiveSkill = value;
+                OnPropertyChanged(nameof(SelectedPassiveSkill));
+            }
+        }
+
         public string CharacterName
         {
             get => _characterData.CharacterName;
@@ -425,9 +439,9 @@ namespace RPGCharacterSheet.ViewModels
             Skill stealth = new() { Name = "Stealth", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus };
             Skill survival = new() { Name = "Survival", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
 
-            _characterData.SkillChecks.AddRange(new List<Skill> 
-            { 
-                acrobatics, 
+            _characterData.SkillChecks.AddRange(new List<Skill>
+            {
+                acrobatics,
                 animalHandling,
                 arcana,
                 athletics,
@@ -447,6 +461,9 @@ namespace RPGCharacterSheet.ViewModels
                 survival
             });
             _skillChecks = new ObservableCollection<Skill>(_characterData.SkillChecks);
+
+            _passiveSkills = new ObservableCollection<Skill>(new List<Skill>() { perception, insight, investigation });
+            SelectedPassiveSkill = perception;
         }
 
         protected void OnPropertyChanged(string propertyName)

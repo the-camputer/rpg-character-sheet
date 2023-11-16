@@ -54,5 +54,20 @@ namespace RPGCharacterSheet.Models
             SkillChecks = new List<Skill>();
             ProficiencyBonus = new Skill { Name = "Proficiency", Modifier = 0 };
         }
+
+        public AbilityScore GetAbilityScore(string scoreName)
+        {
+            return AbilityScores.Find(score => score.Name == scoreName);
+        }
+
+        public Skill GetSkill(string skillName)
+        {
+            return SkillChecks.Find(skill => skill.Name == skillName);
+        }
+
+        public Skill GetSavingThrow(string savingThrowName)
+        {
+            return SavingThrows.Find(sav => sav.Name == savingThrowName);
+        }
     }
 }
