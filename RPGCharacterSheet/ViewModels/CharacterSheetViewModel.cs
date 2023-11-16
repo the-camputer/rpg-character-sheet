@@ -30,9 +30,6 @@ namespace RPGCharacterSheet.ViewModels
         private ObservableCollection<Skill> _passiveSkills;
         public ObservableCollection<Skill> PassiveSkills { get => _passiveSkills; }
 
-        private ObservableCollection<string> _damageTypes;
-        public ObservableCollection<string> DamageTypes { get => _damageTypes; }
-
         private ObservableCollection<Attack> _attacks;
         public ObservableCollection<Attack> Attacks { get => _attacks; }
 
@@ -405,23 +402,6 @@ namespace RPGCharacterSheet.ViewModels
                 "d8",
                 "d10",
                 "d12"
-            };
-
-            _damageTypes = new ObservableCollection<string>()
-            {
-                "Slashing",
-                "Piercing",
-                "Bludgeoning",
-                "Poison",
-                "Acid",
-                "Fire",
-                "Cold",
-                "Radiant",
-                "Necrotic",
-                "Lightning",
-                "Thunder",
-                "Force",
-                "Psychic"
             };
 
             AbilityScore _str = new() { Name = "Strength", Score = 10 };
