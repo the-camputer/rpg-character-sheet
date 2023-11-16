@@ -43,10 +43,11 @@ namespace RPGCharacterSheet.Models
         public string Ideals { get; set; }
         public string Bonds { get; set; }
         public string Flaws { get; set; }
-
         public List<Attack> Attacks { get; set; }
+        public List<Coin> Coins { get; set; }
+        public string Equipment {  get; set; }
 
-        public CharacterData() 
+        public CharacterData()
         {
             Level = 1;
             Age = 1;
@@ -56,6 +57,14 @@ namespace RPGCharacterSheet.Models
             SkillChecks = new List<Skill>();
             ProficiencyBonus = new Skill { Name = "Proficiency", Modifier = 0 };
             Attacks = new List<Attack>();
+            Coins = new List<Coin>()
+            {
+                new() { Name = "CP" },
+                new() { Name = "SP" },
+                new() { Name = "EP" },
+                new() { Name = "GP" },
+                new() { Name = "PP" }
+            };
         }
 
         public AbilityScore GetAbilityScore(string scoreName)

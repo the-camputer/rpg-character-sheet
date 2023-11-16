@@ -366,7 +366,25 @@ namespace RPGCharacterSheet.ViewModels
             }
         }
 
+        public List<Coin> Coins
+        {
+            get => _characterData.Coins;
+            set
+            {
+                _characterData.Coins = value;
+                OnPropertyChanged(nameof(Coins));
+            }
+        }
 
+        public string Equipment
+        {
+            get => _characterData.Equipment;
+            set
+            {
+                _characterData.Equipment = value;
+                OnPropertyChanged(nameof(Equipment));
+            }
+        }
         #endregion
 
         public CharacterSheetViewModel()

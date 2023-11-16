@@ -43,6 +43,8 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             viewModel.Ideals = "Test 2";
             viewModel.Bonds = "Test 3";
             viewModel.Flaws = "Test 4";
+            viewModel.Coins.Find(coin => coin.Name == "EP").Count = 43;
+            viewModel.Equipment = "longsword";
 
 
             Assert.Equal("Balthazar", characterData.CharacterName);
@@ -77,6 +79,8 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal("Test 2", characterData.Ideals);
             Assert.Equal("Test 3", characterData.Bonds);
             Assert.Equal("Test 4", characterData.Flaws);
+            Assert.Equal(43, characterData.Coins.Find(coin => coin.Name == "EP").Count);
+            Assert.Equal("longsword", characterData.Equipment);
         }
 
         [Theory]
