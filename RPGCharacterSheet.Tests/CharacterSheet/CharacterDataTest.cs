@@ -14,12 +14,12 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         {
             CharacterData character = generateCharater();
 
-            Assert.Equal(0, character.SkillChecks.Find(skill => skill.Name == "Acrobatics")?.Modifier);
+            Assert.Equal(0, character.GetSkill("Acrobatics")?.Modifier);
 
-            character.AbilityScores.Find(score => score.Name == "Dexterity").Score = 18;
+            character.GetAbilityScore("Dexterity").Score = 18;
 
-            Assert.Equal(4, character.SkillChecks.Find(skill => skill.Name == "Acrobatics")?.Modifier);
-            Assert.Equal(0, character.SkillChecks.Find(skill => skill.Name == "Perception")?.Modifier);
+            Assert.Equal(4, character.GetSkill("Acrobatics").Modifier);
+            Assert.Equal(0, character.GetSkill("Perception")?.Modifier);
         }
 
         [Fact]
@@ -27,36 +27,36 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         {
             CharacterData character = generateCharater();
 
-            Assert.Equal(0, character.SkillChecks.Find(skill => skill.Name == "Perception")?.Modifier);
+            Assert.Equal(0, character.GetSkill("Perception")?.Modifier);
 
             character.ProficiencyBonus.Modifier = 3;
-            character.SkillChecks.Find(skill => skill.Name == "Perception").Proficient = true;
+            character.GetSkill("Perception").Proficient = true;
 
-            Assert.Equal(3, character.SkillChecks.Find(skill => skill.Name == "Perception")?.Modifier);
+            Assert.Equal(3, character.GetSkill("Perception")?.Modifier);
 
             character.ProficiencyBonus.Modifier = 5;
 
-            Assert.Equal(5, character.SkillChecks.Find(skill => skill.Name == "Perception")?.Modifier);
+            Assert.Equal(5, character.GetSkill("Perception")?.Modifier);
 
-            character.SkillChecks.Find(skill => skill.Name == "Perception").Proficient = false;
+            character.GetSkill("Perception").Proficient = false;
 
-            Assert.Equal(0, character.SkillChecks.Find(skill => skill.Name == "Perception")?.Modifier);
+            Assert.Equal(0, character.GetSkill("Perception")?.Modifier);
         }
 
         [Fact]
         public void Expert_Cannot_Be_True_If_Not_Proficient()
         {
             CharacterData character = generateCharater();
-            Assert.False(character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+            Assert.False(character.GetSkill("Performance").Expert);
 
-            character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
+            character.GetSkill("Performance").Expert = true;
 
-            Assert.False(character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+            Assert.False(character.GetSkill("Performance").Expert);
 
-            character.SkillChecks.Find(skill => skill.Name == "Performance").Proficient = true;
-            character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
+            character.GetSkill("Performance").Proficient = true;
+            character.GetSkill("Performance").Expert = true;
 
-            Assert.True(character.SkillChecks.Find(skill => skill.Name == "Performance").Expert);
+            Assert.True(character.GetSkill("Performance").Expert);
         }
 
         [Fact]
@@ -65,10 +65,10 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             CharacterData character = generateCharater();
             character.ProficiencyBonus.Modifier = 3;
 
-            character.SkillChecks.Find(skill => skill.Name == "Performance").Proficient = true;
-            character.SkillChecks.Find(skill => skill.Name == "Performance").Expert = true;
+            character.GetSkill("Performance").Proficient = true;
+            character.GetSkill("Performance").Expert = true;
 
-            Assert.Equal(6, character.SkillChecks.Find(skill => skill.Name == "Performance").Modifier);
+            Assert.Equal(6, character.GetSkill("Performance").Modifier);
         }
 
         private CharacterData generateCharater()
