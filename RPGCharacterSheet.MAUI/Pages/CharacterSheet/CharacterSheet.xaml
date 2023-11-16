@@ -336,7 +336,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <Entry Text="{Binding AttackModifier}" Margin="0,5" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="50" HeightRequest="35" MinimumHeightRequest="35" FontSize="12"/>
+                                            <Entry Text="{Binding AttackModifier, Mode=TwoWay, Converter={StaticResource BlankAs0Converter}}" Margin="0,5" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="50" HeightRequest="35" MinimumHeightRequest="35" FontSize="12"/>
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
