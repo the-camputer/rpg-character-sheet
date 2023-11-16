@@ -71,6 +71,23 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal(6, character.GetSkill("Performance").Modifier);
         }
 
+        [Theory]
+        [InlineData("Perception", 18, 4, true, false, 18)]
+        [InlineData("Insight", 14, 5, true, true, 22)]
+        [InlineData("Investigation", 7, 5, false, false, 8)]
+        public void Passive_Score_For_Skill_Calculated_Based_On_Modifiers(string skill, int abilityScore, int proficiencyBonus, bool proficient, bool expert, int expectedScore)
+        {
+            CharacterData character = generateCharater();
+            character.ProficiencyBonus.Modifier = proficiencyBonus;
+            Skill skillToTest = character.GetSkill(skill);
+            skillToTest.BaseAbilityScore.Score = abilityScore;
+            skillToTest.Proficient = proficient;
+            skillToTest.Expert = expert;
+
+            Assert.Equal(expectedScore, skillToTest.PassiveScore);
+
+        }
+
         private CharacterData generateCharater()
         {
             CharacterData character = new()
@@ -80,21 +97,26 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             };
 
             AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
+            AbilityScore _int = new() { Name = "Intelligence", Score = 10 };
             AbilityScore _wis = new() { Name = "Wisdom", Score = 10 };
             AbilityScore _cha = new() { Name = "Charisma", Score = 10 };
 
             Skill _dexsav = new() { Name = "Dexterity", BaseAbilityScore = _dex, ProficiencyModifier = character.ProficiencyBonus };
+            Skill _intsav = new() { Name = "Intelligence", BaseAbilityScore = _int, ProficiencyModifier = character.ProficiencyBonus };
             Skill _wissav = new() { Name = "Wisdom", BaseAbilityScore = _wis, ProficiencyModifier = character.ProficiencyBonus };
             Skill _chasav = new() { Name = "Charisma", BaseAbilityScore = _cha, ProficiencyModifier = character.ProficiencyBonus };
 
             Skill _acro = new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = character.ProficiencyBonus };
             Skill _perc = new() { Name = "Perception", BaseAbilityScore = _wis, ProficiencyModifier = character.ProficiencyBonus };
             Skill _perf = new() { Name = "Performance", BaseAbilityScore = _cha, ProficiencyModifier = character.ProficiencyBonus };
+            Skill _inst = new() { Name = "Insight", BaseAbilityScore = _wis, ProficiencyModifier = character.ProficiencyBonus };
+            Skill _invt = new() { Name = "Investigation", BaseAbilityScore = _int, ProficiencyModifier = character.ProficiencyBonus };
+            
 
 
-            character.AbilityScores.AddRange(new List<AbilityScore> { _dex, _wis, _cha });
-            character.SavingThrows.AddRange(new List<Skill> { _dexsav, _wissav, _chasav });
-            character.SkillChecks.AddRange(new List<Skill> { _acro, _perc, _perf });
+            character.AbilityScores.AddRange(new List<AbilityScore> { _dex, _int, _wis, _cha });
+            character.SavingThrows.AddRange(new List<Skill> { _dexsav, _intsav, _wissav, _chasav });
+            character.SkillChecks.AddRange(new List<Skill> { _acro, _perc, _perf, _inst, _invt });
 
             return character;
         }
