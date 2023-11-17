@@ -84,7 +84,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal(43, characterData.Coins.Find(coin => coin.Name == "EP").Count);
             Assert.Equal("longsword", characterData.Equipment);
             Assert.Equal("Languages: Elvish, Common", characterData.OtherProficiencies);
-            Assert.Equal("Luck", characterData.Features);
+            Assert.Equal("Lucky", characterData.Features);
         }
 
         [Theory]
