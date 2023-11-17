@@ -45,6 +45,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             viewModel.Flaws = "Test 4";
             viewModel.Coins.Find(coin => coin.Name == "EP").Count = 43;
             viewModel.Equipment = "longsword";
+            viewModel.OtherProficiencies = "Languages: Elvish, Common";
 
 
             Assert.Equal("Balthazar", characterData.CharacterName);
@@ -81,6 +82,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal("Test 4", characterData.Flaws);
             Assert.Equal(43, characterData.Coins.Find(coin => coin.Name == "EP").Count);
             Assert.Equal("longsword", characterData.Equipment);
+            Assert.Equal("Languages: Elvish, Common", characterData.OtherProficiencies);
         }
 
         [Theory]

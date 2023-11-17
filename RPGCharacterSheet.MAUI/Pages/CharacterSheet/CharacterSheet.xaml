@@ -228,6 +228,15 @@
                             <Picker ItemsSource="{Binding PassiveSkills}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedPassiveSkill}"/>
                         </HorizontalStackLayout>
                     </Border>
+                    <Border  Stroke="LightGray" Padding="0, 10" WidthRequest="380" Margin="0,10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Editor Text="{Binding OtherProficiencies}" WidthRequest="350" HeightRequest="250" FontSize="12"/>
+                            <Label Text="Languages &amp; Other Proficiencies" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Spacing="10" WidthRequest="400">
                     <HorizontalStackLayout WidthRequest="300" Spacing="5" HorizontalOptions="Start">
@@ -372,7 +381,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <ViewCell>
-                                                    <HorizontalStackLayout Margin="0,15" Spacing="5">
+                                                    <HorizontalStackLayout Margin="0,35" Spacing="5">
                                                         <Label Text="{Binding Name}" FontSize="9"/>
                                                         <Entry Text="{Binding Count}" FontSize="9" HeightRequest="35" MinimumHeightRequest="35"/>
                                                     </HorizontalStackLayout>
@@ -381,7 +390,7 @@
                                         </ListView.ItemTemplate>
                                     </ListView>
                                 </VerticalStackLayout>
-                                <Editor HeightRequest="355" WidthRequest="300" Text="{Binding Equipment}" HorizontalOptions="Start"/>
+                                <Editor HeightRequest="655" WidthRequest="300" Text="{Binding Equipment}" HorizontalOptions="Start"/>
                             </HorizontalStackLayout>
                             <Label Text="Equipment &amp; Loot" HorizontalOptions="Center" FontSize="Caption"/>
                         </VerticalStackLayout>
