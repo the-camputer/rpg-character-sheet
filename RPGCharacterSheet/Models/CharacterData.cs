@@ -46,6 +46,7 @@ namespace RPGCharacterSheet.Models
         public List<Attack> Attacks { get; set; }
         public List<Coin> Coins { get; set; }
         public string Equipment {  get; set; }
+        public string OtherProficiencies { get; set; }
 
         public CharacterData()
         {
