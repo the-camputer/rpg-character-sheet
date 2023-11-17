@@ -395,6 +395,15 @@ namespace RPGCharacterSheet.ViewModels
                 OnPropertyChanged(nameof(OtherProficiencies));
             }
         }
+        public string Features
+        {
+            get => _characterData.Features;
+            set
+            {
+                _characterData.Features = value;
+                OnPropertyChanged(nameof(Features));
+            }
+        }
         #endregion
 
         public CharacterSheetViewModel()

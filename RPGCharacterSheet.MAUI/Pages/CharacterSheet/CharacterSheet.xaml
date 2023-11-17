@@ -390,9 +390,9 @@
                                         </ListView.ItemTemplate>
                                     </ListView>
                                 </VerticalStackLayout>
-                                <Editor HeightRequest="655" WidthRequest="300" Text="{Binding Equipment}" HorizontalOptions="Start"/>
+                                <Editor HeightRequest="645" WidthRequest="300" Text="{Binding Equipment}" HorizontalOptions="Start"/>
                             </HorizontalStackLayout>
-                            <Label Text="Equipment &amp; Loot" HorizontalOptions="Center" FontSize="Caption"/>
+                            <Label Text="Equipment &amp; Loot" HorizontalOptions="Center" FontSize="Caption" Margin="0,0,0,10"/>
                         </VerticalStackLayout>
                     </Border>
                 </VerticalStackLayout>
@@ -431,6 +431,15 @@
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
                             <Editor Text="{Binding Flaws, Mode=TwoWay}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Flaws" FontSize="9" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Stroke="LightGray">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="1" HorizontalOptions="Center">
+                            <Editor Text="{Binding Features}" FontSize="12" WidthRequest="325" HeightRequest="830" HorizontalOptions="Center"/>
+                            <Label Text="Traits &amp; Features" FontSize="Caption" HorizontalOptions="Center" Margin="0,0,0,10"/>
                         </VerticalStackLayout>
                     </Border>
                 </VerticalStackLayout>
