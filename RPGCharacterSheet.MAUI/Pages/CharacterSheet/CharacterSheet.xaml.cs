@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Storage;
 using Newtonsoft.Json;
+using RPGCharacterSheet.Models;
 using RPGCharacterSheet.ViewModels;
 using System.Text;
 
@@ -7,36 +8,31 @@ namespace RPGCharacterSheet.Pages;
 
 public partial class CharacterSheet : ContentPage
 {
-
-    private FilePickerFileType _filePickerTypes;
     IFileSaver fileSaver;
     CancellationTokenSource cancellationToken = new CancellationTokenSource();
 
-    public CharacterSheet(IFileSaver fileSaver)
+    public CharacterSheet(CharacterData characterData, IFileSaver fileSaver)
     {
-        _filePickerTypes = new FilePickerFileType(
-                new Dictionary<DevicePlatform, IEnumerable<string>>
-                {
-                    { DevicePlatform.WinUI, new[] { ".rpgc" } }
-                });
-
-        BindingContext = new CharacterSheetViewModel();
+        BindingContext = characterData == null ? new CharacterSheetViewModel() : new CharacterSheetViewModel(characterData);
         InitializeComponent();
 
         this.fileSaver = fileSaver;
     }
 
+    public CharacterSheet(IFileSaver fileSaver) : this(null, fileSaver) { }
 
-    public CharacterSheet() : this(null) { }
+    public CharacterSheet() : this(new(), null) { }
+
+    public CharacterSheet(CharacterData characterData) : this(characterData, null) { }
 
     public async void SaveCharacter(object sender, EventArgs e)
     {
         var characterData = (BindingContext as CharacterSheetViewModel).CharacterData;
         var serialized = JsonConvert.SerializeObject(characterData, Formatting.None);
 
-        using var stream = new MemoryStream(Encoding.Default.GetBytes(serialized));
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(serialized));
 
-        await fileSaver.SaveAsync(FileSystem.Current.AppDataDirectory, $"{characterData.CharacterName}-{characterData.Level}.prgc", stream, cancellationToken.Token);
+        await fileSaver.SaveAsync(FileSystem.Current.AppDataDirectory, $"{characterData.CharacterName}-{characterData.Level}.rpgc", stream, cancellationToken.Token);
 
     }
 }

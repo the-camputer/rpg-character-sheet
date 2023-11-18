@@ -50,7 +50,7 @@ namespace RPGCharacterSheet.Models
         public string OtherProficiencies { get; set; }
         public string Features { get; set; }
 
-        public CharacterData()
+        public CharacterData(bool freshSetup = false)
         {
             Level = 1;
             Age = 1;
@@ -58,16 +58,21 @@ namespace RPGCharacterSheet.Models
             AbilityScores = new List<AbilityScore>();
             SavingThrows = new List<Skill>();
             SkillChecks = new List<Skill>();
-            ProficiencyBonus = new Skill { Name = "Proficiency", Modifier = 0 };
-            Attacks = new List<Attack>();
-            Coins = new List<Coin>()
+            if (freshSetup)
             {
-                new() { Name = "CP" },
-                new() { Name = "SP" },
-                new() { Name = "EP" },
-                new() { Name = "GP" },
-                new() { Name = "PP" }
-            };
+                ProficiencyBonus = new Skill { Name = "Proficiency", Modifier = 0 };
+                Coins = new List<Coin>()
+                {
+                    new() { Name = "CP" },
+                    new() { Name = "SP" },
+                    new() { Name = "EP" },
+                    new() { Name = "GP" },
+                    new() { Name = "PP" }
+                };
+            }
+            
+            Attacks = new List<Attack>();
+            
         }
 
         public AbilityScore GetAbilityScore(string scoreName)

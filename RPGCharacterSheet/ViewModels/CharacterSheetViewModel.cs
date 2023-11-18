@@ -409,38 +409,20 @@ namespace RPGCharacterSheet.ViewModels
 
         public CharacterSheetViewModel()
         {
-            _characterData = new CharacterData();
-            SetUp();
+            _characterData = new CharacterData(true);
+            SetUpCharacter();
+            SetUpSheet();
         }
 
         public CharacterSheetViewModel(CharacterData characterData)
         {
             _characterData = characterData;
-            SetUp();
+            SetUpSheet();
         }
 
-        private void SetUp()
+        private void SetUpCharacter()
         {
-            _alignments = new ObservableCollection<string>()
-            {
-                "LG",
-                "NG",
-                "CG",
-                "LN",
-                "N",
-                "CN",
-                "LE",
-                "NE",
-                "CE"
-            };
-
-            _hitDiceTypes = new ObservableCollection<string>()
-            {
-                "d6",
-                "d8",
-                "d10",
-                "d12"
-            };
+            
 
             AbilityScore _str = new() { Name = "Strength", Score = 10 };
             AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
@@ -451,7 +433,6 @@ namespace RPGCharacterSheet.ViewModels
 
 
             _characterData.AbilityScores.AddRange(new List<AbilityScore> { _str, _dex, _con, _int, _wis, _cha });
-            _abilityScores = new ObservableCollection<AbilityScore>(_characterData.AbilityScores);
 
             Skill saveStr = new() { Name = _str.Name, BaseAbilityScore = _str, ProficiencyModifier = _characterData.ProficiencyBonus };
             Skill saveDex = new() { Name = _dex.Name, BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus };
@@ -461,7 +442,7 @@ namespace RPGCharacterSheet.ViewModels
             Skill saveCha = new() { Name = _cha.Name, BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus };
 
             _characterData.SavingThrows.AddRange(new List<Skill> { saveStr, saveDex, saveCon, saveInt, saveWis, saveCha });
-            _savingThrows = new ObservableCollection<Skill>(_characterData.SavingThrows);
+            
 
             Skill acrobatics = new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus };
             Skill animalHandling = new() { Name = "Animal Handling", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
@@ -503,16 +484,47 @@ namespace RPGCharacterSheet.ViewModels
                 stealth,
                 survival
             });
-            _skillChecks = new ObservableCollection<Skill>(_characterData.SkillChecks);
+            
 
             _passiveSkills = new ObservableCollection<Skill>(new List<Skill>() { perception, insight, investigation });
-            SelectedPassiveSkill = perception;
 
             Attack attack1 = new Attack();
             Attack attack2 = new Attack();
             Attack attack3 = new Attack();
 
             _characterData.Attacks.AddRange(new List<Attack>() { attack1, attack2, attack3 });
+            
+        }
+
+        private void SetUpSheet()
+        {
+            _alignments = new ObservableCollection<string>()
+            {
+                "LG",
+                "NG",
+                "CG",
+                "LN",
+                "N",
+                "CN",
+                "LE",
+                "NE",
+                "CE"
+            };
+
+            _hitDiceTypes = new ObservableCollection<string>()
+            {
+                "d6",
+                "d8",
+                "d10",
+                "d12"
+            };
+
+            _abilityScores = new ObservableCollection<AbilityScore>(_characterData.AbilityScores);
+            _savingThrows = new ObservableCollection<Skill>(_characterData.SavingThrows);
+            _skillChecks = new ObservableCollection<Skill>(_characterData.SkillChecks);
+            SelectedPassiveSkill = _characterData.SkillChecks.Find(sc => sc.Name == "Perception");
+            List<string> passiveSkillNames = new List<string>() { "Perception", "Insight", "Investigation" };
+            _passiveSkills = new ObservableCollection<Skill>(_characterData.SkillChecks.FindAll(sc => passiveSkillNames.Contains(sc.Name)));
             _attacks = new ObservableCollection<Attack>(_characterData.Attacks);
         }
 
