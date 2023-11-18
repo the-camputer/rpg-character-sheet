@@ -129,7 +129,7 @@
                     </FlexLayout>
                 </VerticalStackLayout>
             </Border>
-            <Grid RowDefinitions="500, 500, 500" ColumnDefinitions="400, 400, 400" ColumnSpacing="0">
+            <Grid RowDefinitions="425, 425, 425" ColumnDefinitions="400, 400, 400" ColumnSpacing="0">
                 <VerticalStackLayout Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Spacing="0" WidthRequest="400">
                     <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
                         <VerticalStackLayout  MinimumWidthRequest="120" HorizontalOptions="Center">
@@ -444,6 +444,9 @@
                     </Border>
                 </VerticalStackLayout>
             </Grid>
+            <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="End">
+                <Button Text="Save" BackgroundColor="BlueViolet" Pressed="SaveCharacter" />
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

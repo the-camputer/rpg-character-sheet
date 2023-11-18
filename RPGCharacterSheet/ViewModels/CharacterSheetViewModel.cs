@@ -519,10 +519,6 @@ namespace RPGCharacterSheet.ViewModels
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            if (propertyName == "Features")
-            {
-                CharacterData.Save("");
-            }
         }
     }
 }

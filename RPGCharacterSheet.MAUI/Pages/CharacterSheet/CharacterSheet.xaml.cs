@@ -1,5 +1,7 @@
+using CommunityToolkit.Maui.Storage;
+using Newtonsoft.Json;
 using RPGCharacterSheet.ViewModels;
-
+using System.Text;
 
 namespace RPGCharacterSheet.Pages;
 
@@ -7,9 +9,10 @@ public partial class CharacterSheet : ContentPage
 {
 
     private FilePickerFileType _filePickerTypes;
+    IFileSaver fileSaver;
+    CancellationTokenSource cancellationToken = new CancellationTokenSource();
 
-
-    public CharacterSheet()
+    public CharacterSheet(IFileSaver fileSaver)
     {
         _filePickerTypes = new FilePickerFileType(
                 new Dictionary<DevicePlatform, IEnumerable<string>>
@@ -20,18 +23,20 @@ public partial class CharacterSheet : ContentPage
         BindingContext = new CharacterSheetViewModel();
         InitializeComponent();
 
-        System.Diagnostics.Debug.WriteLine(FileSystem.AppDataDirectory);
+        this.fileSaver = fileSaver;
     }
+
+
+    public CharacterSheet() : this(null) { }
 
     public async void SaveCharacter(object sender, EventArgs e)
     {
-        FileResult file = await FilePicker.Default.PickAsync(new PickOptions
-        {
-            PickerTitle = "Save Character Data",
-            FileTypes = _filePickerTypes
-        });
+        var characterData = (BindingContext as CharacterSheetViewModel).CharacterData;
+        var serialized = JsonConvert.SerializeObject(characterData, Formatting.None);
 
-        (BindingContext as CharacterSheetViewModel).CharacterData.Save(file.FullPath.ToString());
+        using var stream = new MemoryStream(Encoding.Default.GetBytes(serialized));
+
+        await fileSaver.SaveAsync(FileSystem.Current.AppDataDirectory, $"{characterData.CharacterName}-{characterData.Level}.prgc", stream, cancellationToken.Token);
 
     }
 }

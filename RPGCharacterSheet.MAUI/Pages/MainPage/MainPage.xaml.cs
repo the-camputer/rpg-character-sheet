@@ -1,4 +1,6 @@
-﻿namespace RPGCharacterSheet.Pages
+﻿using CommunityToolkit.Maui.Storage;
+
+namespace RPGCharacterSheet.Pages
 {
     public partial class MainPage : ContentPage
     {
@@ -11,7 +13,7 @@
 
         private void OnCreateClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CharacterSheet());
+            Navigation.PushAsync(new CharacterSheet(FileSaver.Default));
         }
     }
 }

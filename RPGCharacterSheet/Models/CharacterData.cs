@@ -84,11 +84,5 @@ namespace RPGCharacterSheet.Models
         {
             return SavingThrows.Find(sav => sav.Name == savingThrowName);
         }
-
-        public void Save(string fullPath)
-        {
-            string output = JsonConvert.SerializeObject(this);
-            System.Diagnostics.Debug.WriteLine(output);
-        }
     }
 }

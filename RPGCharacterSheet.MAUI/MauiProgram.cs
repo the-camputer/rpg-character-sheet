@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
+using RPGCharacterSheet.Pages;
 
 namespace RPGCharacterSheet
 {
@@ -16,6 +18,9 @@ namespace RPGCharacterSheet
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
+            builder.Services.AddTransient<CharacterSheet>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
