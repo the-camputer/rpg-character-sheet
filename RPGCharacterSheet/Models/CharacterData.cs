@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,6 +83,12 @@ namespace RPGCharacterSheet.Models
         public Skill GetSavingThrow(string savingThrowName)
         {
             return SavingThrows.Find(sav => sav.Name == savingThrowName);
+        }
+
+        public void Save(string fullPath)
+        {
+            string output = JsonConvert.SerializeObject(this);
+            System.Diagnostics.Debug.WriteLine(output);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace RPGCharacterSheet.ViewModels
         public ObservableCollection<string> HitDiceTypes { get => _hitDiceTypes; }
 
         private readonly CharacterData _characterData;
+        public CharacterData CharacterData { get => _characterData; }
 
         private ObservableCollection<AbilityScore> _abilityScores;
         public ObservableCollection<AbilityScore> AbilityScores { get => _abilityScores; }
@@ -518,6 +519,10 @@ namespace RPGCharacterSheet.ViewModels
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName == "Features")
+            {
+                CharacterData.Save("");
+            }
         }
     }
 }
