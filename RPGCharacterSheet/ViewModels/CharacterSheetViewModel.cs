@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Collections.ObjectModel;
 using RPGCharacterSheet.Models;
 
@@ -17,6 +15,7 @@ namespace RPGCharacterSheet.ViewModels
         public ObservableCollection<string> HitDiceTypes { get => _hitDiceTypes; }
 
         private readonly CharacterData _characterData;
+        public CharacterData CharacterData { get => _characterData; }
 
         private ObservableCollection<AbilityScore> _abilityScores;
         public ObservableCollection<AbilityScore> AbilityScores { get => _abilityScores; }
@@ -408,17 +407,65 @@ namespace RPGCharacterSheet.ViewModels
 
         public CharacterSheetViewModel()
         {
-            _characterData = new CharacterData();
-            SetUp();
+            _characterData = new CharacterData(true);
+            SetupCharacter(_characterData);
+            SetupSheet();
         }
 
         public CharacterSheetViewModel(CharacterData characterData)
         {
             _characterData = characterData;
-            SetUp();
+            SetupSheet();
         }
 
-        private void SetUp()
+        public static void SetupCharacter(CharacterData characterData)
+        {
+            AbilityScore _str = new() { Name = "Strength", Score = 10 };
+            AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
+            AbilityScore _con = new() { Name = "Constitution", Score = 10 };
+            AbilityScore _int = new() { Name = "Intelligence", Score = 10 };
+            AbilityScore _wis = new() { Name = "Wisdom", Score = 10 };
+            AbilityScore _cha = new() { Name = "Charisma", Score = 10 };
+            List<AbilityScore> abilityScores = new() { _str, _dex, _con, _int, _wis, _cha };
+
+            characterData.AbilityScores.AddRange(abilityScores);
+
+            List<Skill> savingThrows = abilityScores.Select(
+                ability => new Skill() {
+                    Name = ability.Name, 
+                    BaseAbilityScore = ability, 
+                    ProficiencyModifier = characterData.ProficiencyBonus 
+                }).ToList();
+
+            characterData.SavingThrows.AddRange(savingThrows);
+            
+            characterData.SkillChecks.AddRange(new List<Skill>
+            {
+                new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Animal Handling", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Arcana", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Athletics", BaseAbilityScore = _str, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Deception", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "History", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Insight", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Intimidation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Investigation", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Medicine", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Nature", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Perception", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Performance", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Persuation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Religion", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Sleight of Hand", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Stealth", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Survival", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus }
+            });
+
+            characterData.Attacks.AddRange(new List<Attack>() { new(), new(), new() });
+            
+        }
+
+        private void SetupSheet()
         {
             _alignments = new ObservableCollection<string>()
             {
@@ -441,77 +488,12 @@ namespace RPGCharacterSheet.ViewModels
                 "d12"
             };
 
-            AbilityScore _str = new() { Name = "Strength", Score = 10 };
-            AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
-            AbilityScore _con = new() { Name = "Constitution", Score = 10 };
-            AbilityScore _int = new() { Name = "Intelligence", Score = 10 };
-            AbilityScore _wis = new() { Name = "Wisdom", Score = 10 };
-            AbilityScore _cha = new() { Name = "Charisma", Score = 10 };
-
-
-            _characterData.AbilityScores.AddRange(new List<AbilityScore> { _str, _dex, _con, _int, _wis, _cha });
             _abilityScores = new ObservableCollection<AbilityScore>(_characterData.AbilityScores);
-
-            Skill saveStr = new() { Name = _str.Name, BaseAbilityScore = _str, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill saveDex = new() { Name = _dex.Name, BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill saveCon = new() { Name = _con.Name, BaseAbilityScore = _con, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill saveInt = new() { Name = _int.Name, BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill saveWis = new() { Name = _wis.Name, BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill saveCha = new() { Name = _cha.Name, BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus };
-
-            _characterData.SavingThrows.AddRange(new List<Skill> { saveStr, saveDex, saveCon, saveInt, saveWis, saveCha });
             _savingThrows = new ObservableCollection<Skill>(_characterData.SavingThrows);
-
-            Skill acrobatics = new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill animalHandling = new() { Name = "Animal Handling", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill arcana = new() { Name = "Arcana", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill athletics = new() { Name = "Athletics", BaseAbilityScore = _str, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill deception = new() { Name = "Deception", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill history = new() { Name = "History", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill insight = new() { Name = "Insight", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill intimidation = new() { Name = "Intimidation", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill investigation = new() { Name = "Investigation", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill medicine = new() { Name = "Medicine", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill nature = new() { Name = "Nature", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill perception = new() { Name = "Perception", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill performance = new() { Name = "Performance", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill persuation = new() { Name = "Persuation", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill religion = new() { Name = "Religion", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill slightOfHand = new() { Name = "Sleight of Hand", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill stealth = new() { Name = "Stealth", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus };
-            Skill survival = new() { Name = "Survival", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus };
-
-            _characterData.SkillChecks.AddRange(new List<Skill>
-            {
-                acrobatics,
-                animalHandling,
-                arcana,
-                athletics,
-                deception,
-                history,
-                insight,
-                intimidation,
-                investigation,
-                medicine,
-                nature,
-                perception,
-                performance,
-                persuation,
-                religion,
-                slightOfHand,
-                stealth,
-                survival
-            });
             _skillChecks = new ObservableCollection<Skill>(_characterData.SkillChecks);
-
-            _passiveSkills = new ObservableCollection<Skill>(new List<Skill>() { perception, insight, investigation });
-            SelectedPassiveSkill = perception;
-
-            Attack attack1 = new Attack();
-            Attack attack2 = new Attack();
-            Attack attack3 = new Attack();
-
-            _characterData.Attacks.AddRange(new List<Attack>() { attack1, attack2, attack3 });
+            SelectedPassiveSkill = _characterData.SkillChecks.Find(sc => sc.Name == "Perception");
+            List<string> passiveSkillNames = new List<string>() { "Perception", "Insight", "Investigation" };
+            _passiveSkills = new ObservableCollection<Skill>(_characterData.SkillChecks.FindAll(sc => passiveSkillNames.Contains(sc.Name)));
             _attacks = new ObservableCollection<Attack>(_characterData.Attacks);
         }
 

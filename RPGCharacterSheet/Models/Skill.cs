@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace RPGCharacterSheet.Models
 {
@@ -25,13 +21,19 @@ namespace RPGCharacterSheet.Models
                     _baseAbilityScore.PropertyChanged -= AbilityScoreModifierChanged;
                 }
                 _baseAbilityScore = value;
-                _baseAbilityScore.PropertyChanged += AbilityScoreModifierChanged;
+                if (_baseAbilityScore != null)
+                {
+                    _baseAbilityScore.PropertyChanged += AbilityScoreModifierChanged;
+                }
+                
                 Modifier = CalculateModifier();
             }
         }
 
-        private Skill _proficiencyModifier;
-        public Skill ProficiencyModifier
+        private ProficiencyBonus _proficiencyModifier;
+
+        [JsonIgnore]
+        public ProficiencyBonus ProficiencyModifier
         {
             get => _proficiencyModifier;
             set
@@ -41,7 +43,11 @@ namespace RPGCharacterSheet.Models
                     _proficiencyModifier.PropertyChanged -= ProficiencyModifierChanged;
                 }
                 _proficiencyModifier = value;
-                _proficiencyModifier.PropertyChanged += ProficiencyModifierChanged;
+                if (_proficiencyModifier != null)
+                {
+                    _proficiencyModifier.PropertyChanged += ProficiencyModifierChanged;
+                }
+              
                 Modifier = CalculateModifier();
             }
         }
@@ -125,7 +131,7 @@ namespace RPGCharacterSheet.Models
 
         private int CalculateModifier()
         {
-            int result = BaseAbilityScore.Modifier;
+            int result = BaseAbilityScore != null ? BaseAbilityScore.Modifier : 0;
 
             if (Proficient && ProficiencyModifier != null)
             {

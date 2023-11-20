@@ -8,7 +8,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [Fact]
         public void Updating_VM_Updates_CharacterData()
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new(characterData);
             
             viewModel.CharacterName = "Balthazar";
@@ -96,7 +96,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [InlineData(5, "Charisma")]
         public void VM_Adds_AbilityScores_To_Character_Data(int index, string expectedName)
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
 
             Assert.Equal(expectedName, characterData.AbilityScores[index].Name);
@@ -113,7 +113,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [InlineData(5, "Charisma")]
         public void VM_Adds_Saving_Throws_To_Character_Data(int index, string expectedName)
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
 
             Assert.Equal(expectedName, characterData.SavingThrows[index].Name);
@@ -141,11 +141,31 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [InlineData(17, "Survival", "Wisdom")]
         public void VM_Adds_Skills_To_Character_Data(int index, string expectedSkillCheckName, string expectedAbilityScore)
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new(characterData);
 
             Assert.Equal(expectedSkillCheckName, characterData.SkillChecks[index].Name);
             Assert.Equal(expectedAbilityScore, characterData.SkillChecks[index].BaseAbilityScore.Name);
+        }
+
+        [Fact]
+        public void VM_Default_Constructor_Creates_CharacterData()
+        {
+            CharacterSheetViewModel vm = new();
+            
+            Assert.Equal(5, vm.Coins.Count);
+            Assert.Equal(6, vm.AbilityScores.Count);
+            Assert.Equal(6, vm.SavingThrows.Count);
+            Assert.Equal(18, vm.SkillChecks.Count);
+        }
+
+        private CharacterData createBaseCharacter()
+        {
+            CharacterData characterData = new(true);
+
+            CharacterSheetViewModel.SetupCharacter(characterData);
+
+            return characterData;
         }
     }
 }

@@ -22,12 +22,22 @@
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Button
-                x:Name="CreateBtn"
-                Text="Create"
-                SemanticProperties.Hint="Create a new Character Sheet"
-                Clicked="OnCreateClicked"
-                HorizontalOptions="Center" />
+            <HorizontalStackLayout Spacing="25" HorizontalOptions="Center">
+                <Button
+                    x:Name="CreateBtn"
+                    Text="Create"
+                    SemanticProperties.Hint="Create a new Character Sheet"
+                    Clicked="OnCreateClicked"
+                    HorizontalOptions="Center" />
+
+                <Button
+                    x:Name="LoadBtn"
+                    Text="Load"
+                    SemanticProperties.Hint="Load a Character"
+                    Clicked="LoadBtn_Clicked"
+                    HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+            
 
         </VerticalStackLayout>
     </ScrollView>

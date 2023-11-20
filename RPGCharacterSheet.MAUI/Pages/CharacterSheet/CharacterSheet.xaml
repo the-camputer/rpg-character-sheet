@@ -129,7 +129,7 @@
                     </FlexLayout>
                 </VerticalStackLayout>
             </Border>
-            <Grid RowDefinitions="500, 500, 500" ColumnDefinitions="400, 400, 400" ColumnSpacing="0">
+            <Grid RowDefinitions="425, 425, 425" ColumnDefinitions="400, 400, 400" ColumnSpacing="0">
                 <VerticalStackLayout Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Spacing="0" WidthRequest="400">
                     <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
                         <VerticalStackLayout  MinimumWidthRequest="120" HorizontalOptions="Center">
@@ -411,7 +411,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
-                            <Editor Text="{Binding Ideals, Mode=TwoWay}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
+                            <Editor Text="{Binding Ideals, Mode=TwoWay}" HeightRequest="75" FontSize="12" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Ideals" FontSize="9" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
@@ -420,7 +420,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
-                            <Editor Text="{Binding Bonds, Mode=TwoWay}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
+                            <Editor Text="{Binding Bonds, Mode=TwoWay}" HeightRequest="75" FontSize="12" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Bonds" FontSize="9" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
@@ -429,7 +429,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout Spacing="2" Padding="0,0,0,2">
-                            <Editor Text="{Binding Flaws, Mode=TwoWay}" HeightRequest="75" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
+                            <Editor Text="{Binding Flaws, Mode=TwoWay}" HeightRequest="75" FontSize="12" WidthRequest="340" VerticalTextAlignment="Start" IsSpellCheckEnabled="True" />
                             <Label Text="Flaws" FontSize="9" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
@@ -444,6 +444,9 @@
                     </Border>
                 </VerticalStackLayout>
             </Grid>
+            <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="End">
+                <Button Text="Save" BackgroundColor="BlueViolet" Pressed="SaveCharacter" />
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
