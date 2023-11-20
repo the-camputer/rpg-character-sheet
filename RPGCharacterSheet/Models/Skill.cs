@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace RPGCharacterSheet.Models
 {
@@ -34,8 +30,10 @@ namespace RPGCharacterSheet.Models
             }
         }
 
-        private Skill _proficiencyModifier;
-        public Skill ProficiencyModifier
+        private ProficiencyBonus _proficiencyModifier;
+
+        [JsonIgnore]
+        public ProficiencyBonus ProficiencyModifier
         {
             get => _proficiencyModifier;
             set

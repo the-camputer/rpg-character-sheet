@@ -90,7 +90,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
 
         private CharacterData generateCharater()
         {
-            CharacterData character = new()
+            CharacterData character = new(true)
             {
                 CharacterName = "Charles Lorrance",
                 Class = "Fighter"

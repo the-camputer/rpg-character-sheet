@@ -8,7 +8,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [Fact]
         public void Updating_VM_Updates_CharacterData()
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new(characterData);
             
             viewModel.CharacterName = "Balthazar";
@@ -96,7 +96,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [InlineData(5, "Charisma")]
         public void VM_Adds_AbilityScores_To_Character_Data(int index, string expectedName)
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
 
             Assert.Equal(expectedName, characterData.AbilityScores[index].Name);
@@ -113,7 +113,7 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [InlineData(5, "Charisma")]
         public void VM_Adds_Saving_Throws_To_Character_Data(int index, string expectedName)
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new CharacterSheetViewModel(characterData);
 
             Assert.Equal(expectedName, characterData.SavingThrows[index].Name);
@@ -141,11 +141,61 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
         [InlineData(17, "Survival", "Wisdom")]
         public void VM_Adds_Skills_To_Character_Data(int index, string expectedSkillCheckName, string expectedAbilityScore)
         {
-            CharacterData characterData = new();
+            CharacterData characterData = createBaseCharacter();
             CharacterSheetViewModel viewModel = new(characterData);
 
             Assert.Equal(expectedSkillCheckName, characterData.SkillChecks[index].Name);
             Assert.Equal(expectedAbilityScore, characterData.SkillChecks[index].BaseAbilityScore.Name);
+        }
+
+        private CharacterData createBaseCharacter()
+        {
+            CharacterData characterData = new(true);
+            AbilityScore _str = new() { Name = "Strength", Score = 10 };
+            AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
+            AbilityScore _con = new() { Name = "Constitution", Score = 10 };
+            AbilityScore _int = new() { Name = "Intelligence", Score = 10 };
+            AbilityScore _wis = new() { Name = "Wisdom", Score = 10 };
+            AbilityScore _cha = new() { Name = "Charisma", Score = 10 };
+            List<AbilityScore> abilityScores = new() { _str, _dex, _con, _int, _wis, _cha };
+
+            characterData.AbilityScores = abilityScores;
+
+            List<Skill> savingThrows = abilityScores.Select(
+                ability => new Skill()
+                {
+                    Name = ability.Name,
+                    BaseAbilityScore = ability,
+                    ProficiencyModifier = characterData.ProficiencyBonus
+                }).ToList();
+
+            characterData.SavingThrows = savingThrows;
+
+            characterData.SkillChecks = new List<Skill>
+            {
+                new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Animal Handling", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Arcana", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Athletics", BaseAbilityScore = _str, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Deception", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "History", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Insight", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Intimidation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Investigation", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Medicine", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Nature", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Perception", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Performance", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Persuation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Religion", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Sleight of Hand", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Stealth", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Survival", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus }
+            };
+
+            characterData.Attacks.AddRange(new List<Attack>() { new(), new(), new() });
+
+            return characterData;
         }
     }
 }

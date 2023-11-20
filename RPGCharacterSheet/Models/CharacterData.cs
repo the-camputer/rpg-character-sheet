@@ -1,10 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace RPGCharacterSheet.Models
 {
     public class CharacterData
@@ -25,10 +19,10 @@ namespace RPGCharacterSheet.Models
         public string Hair { get; set; }
         public string Eyes { get; set; }
         public int ExperiencePoints { get; set; }
+        public ProficiencyBonus ProficiencyBonus { get; set; }
         public List<AbilityScore> AbilityScores { get; set; }
         public List<Skill> SavingThrows { get; set; }
         public List<Skill> SkillChecks { get; set; }
-        public Skill ProficiencyBonus { get; set; }
         public bool Inspiration { get; set; }
         public int ArmorClass { get; set; }
         public int Initiative { get; set; }
@@ -50,7 +44,7 @@ namespace RPGCharacterSheet.Models
         public string OtherProficiencies { get; set; }
         public string Features { get; set; }
 
-        public CharacterData(bool freshSetup = false)
+        public CharacterData(bool freshSetup = false, ProficiencyBonus ProficiencyModifier = null)
         {
             Level = 1;
             Age = 1;
@@ -58,9 +52,10 @@ namespace RPGCharacterSheet.Models
             AbilityScores = new List<AbilityScore>();
             SavingThrows = new List<Skill>();
             SkillChecks = new List<Skill>();
+            ProficiencyBonus = ProficiencyModifier;
             if (freshSetup)
             {
-                ProficiencyBonus = new Skill { Name = "Proficiency", Modifier = 0 };
+                ProficiencyBonus = new ProficiencyBonus { Modifier = 0 };
                 Coins = new List<Coin>()
                 {
                     new() { Name = "CP" },
@@ -88,6 +83,13 @@ namespace RPGCharacterSheet.Models
         public Skill GetSavingThrow(string savingThrowName)
         {
             return SavingThrows.Find(sav => sav.Name == savingThrowName);
+        }
+
+        // TODO: A one-off function to handle resetting of connections after deserialization doesn't smell the best, but it'll do
+        public void ConnectProficiency()
+        {
+            SavingThrows.ForEach(save => save.ProficiencyModifier = ProficiencyBonus);
+            SkillChecks.ForEach(skill => skill.ProficiencyModifier = ProficiencyBonus);
         }
     }
 }

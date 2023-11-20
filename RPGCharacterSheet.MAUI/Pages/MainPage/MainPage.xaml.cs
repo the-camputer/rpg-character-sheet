@@ -36,8 +36,9 @@ namespace RPGCharacterSheet.Pages
             string serializedData = reader.ReadToEnd();
 
             CharacterData characterData = JsonConvert.DeserializeObject<CharacterData>(serializedData);
+            characterData.ConnectProficiency();
 
-            await Navigation.PushAsync(new CharacterSheet(characterData));
+            await Navigation.PushAsync(new CharacterSheet(characterData, FileSaver.Default));
         }
     }
 }
