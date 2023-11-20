@@ -148,52 +148,22 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
             Assert.Equal(expectedAbilityScore, characterData.SkillChecks[index].BaseAbilityScore.Name);
         }
 
+        [Fact]
+        public void VM_Default_Constructor_Creates_CharacterData()
+        {
+            CharacterSheetViewModel vm = new();
+            
+            Assert.Equal(5, vm.Coins.Count);
+            Assert.Equal(6, vm.AbilityScores.Count);
+            Assert.Equal(6, vm.SavingThrows.Count);
+            Assert.Equal(18, vm.SkillChecks.Count);
+        }
+
         private CharacterData createBaseCharacter()
         {
             CharacterData characterData = new(true);
-            AbilityScore _str = new() { Name = "Strength", Score = 10 };
-            AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
-            AbilityScore _con = new() { Name = "Constitution", Score = 10 };
-            AbilityScore _int = new() { Name = "Intelligence", Score = 10 };
-            AbilityScore _wis = new() { Name = "Wisdom", Score = 10 };
-            AbilityScore _cha = new() { Name = "Charisma", Score = 10 };
-            List<AbilityScore> abilityScores = new() { _str, _dex, _con, _int, _wis, _cha };
 
-            characterData.AbilityScores = abilityScores;
-
-            List<Skill> savingThrows = abilityScores.Select(
-                ability => new Skill()
-                {
-                    Name = ability.Name,
-                    BaseAbilityScore = ability,
-                    ProficiencyModifier = characterData.ProficiencyBonus
-                }).ToList();
-
-            characterData.SavingThrows = savingThrows;
-
-            characterData.SkillChecks = new List<Skill>
-            {
-                new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Animal Handling", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Arcana", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Athletics", BaseAbilityScore = _str, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Deception", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "History", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Insight", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Intimidation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Investigation", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Medicine", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Nature", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Perception", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Performance", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Persuation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Religion", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Sleight of Hand", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Stealth", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
-                new() { Name = "Survival", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus }
-            };
-
-            characterData.Attacks.AddRange(new List<Attack>() { new(), new(), new() });
+            CharacterSheetViewModel.SetupCharacter(characterData);
 
             return characterData;
         }

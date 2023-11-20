@@ -408,17 +408,17 @@ namespace RPGCharacterSheet.ViewModels
         public CharacterSheetViewModel()
         {
             _characterData = new CharacterData(true);
-            SetUpCharacter();
-            SetUpSheet();
+            SetupCharacter(_characterData);
+            SetupSheet();
         }
 
         public CharacterSheetViewModel(CharacterData characterData)
         {
             _characterData = characterData;
-            SetUpSheet();
+            SetupSheet();
         }
 
-        private void SetUpCharacter()
+        public static void SetupCharacter(CharacterData characterData)
         {
             AbilityScore _str = new() { Name = "Strength", Score = 10 };
             AbilityScore _dex = new() { Name = "Dexterity", Score = 10 };
@@ -428,43 +428,44 @@ namespace RPGCharacterSheet.ViewModels
             AbilityScore _cha = new() { Name = "Charisma", Score = 10 };
             List<AbilityScore> abilityScores = new() { _str, _dex, _con, _int, _wis, _cha };
 
-            _characterData.AbilityScores.AddRange(abilityScores);
+            characterData.AbilityScores.AddRange(abilityScores);
 
             List<Skill> savingThrows = abilityScores.Select(
                 ability => new Skill() {
                     Name = ability.Name, 
                     BaseAbilityScore = ability, 
-                    ProficiencyModifier = _characterData.ProficiencyBonus 
+                    ProficiencyModifier = characterData.ProficiencyBonus 
                 }).ToList();
 
-            _characterData.SavingThrows.AddRange(savingThrows);
+            characterData.SavingThrows.AddRange(savingThrows);
             
-            _characterData.SkillChecks.AddRange(new List<Skill>
+            characterData.SkillChecks.AddRange(new List<Skill>
             {
-                new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Animal Handling", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Arcana", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Deception", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "History", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Insight", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Intimidation", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Investigation", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Medicine", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Nature", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Perception", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Performance", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Persuation", BaseAbilityScore = _cha, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Religion", BaseAbilityScore = _int, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Sleight of Hand", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Stealth", BaseAbilityScore = _dex, ProficiencyModifier = _characterData.ProficiencyBonus },
-                new() { Name = "Survival", BaseAbilityScore = _wis, ProficiencyModifier = _characterData.ProficiencyBonus }
+                new() { Name = "Acrobatics", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Animal Handling", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Arcana", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Athletics", BaseAbilityScore = _str, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Deception", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "History", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Insight", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Intimidation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Investigation", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Medicine", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Nature", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Perception", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Performance", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Persuation", BaseAbilityScore = _cha, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Religion", BaseAbilityScore = _int, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Sleight of Hand", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Stealth", BaseAbilityScore = _dex, ProficiencyModifier = characterData.ProficiencyBonus },
+                new() { Name = "Survival", BaseAbilityScore = _wis, ProficiencyModifier = characterData.ProficiencyBonus }
             });
 
-            _characterData.Attacks.AddRange(new List<Attack>() { new(), new(), new() });
+            characterData.Attacks.AddRange(new List<Attack>() { new(), new(), new() });
             
         }
 
-        private void SetUpSheet()
+        private void SetupSheet()
         {
             _alignments = new ObservableCollection<string>()
             {

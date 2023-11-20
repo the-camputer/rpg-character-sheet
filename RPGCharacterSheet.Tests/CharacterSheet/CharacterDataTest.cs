@@ -1,9 +1,5 @@
 ﻿using RPGCharacterSheet.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RPGCharacterSheet.ViewModels;
 
 namespace RPGCharacterSheet.Tests.CharacterSheet
 {
@@ -86,6 +82,26 @@ namespace RPGCharacterSheet.Tests.CharacterSheet
 
             Assert.Equal(expectedScore, skillToTest.PassiveScore);
 
+        }
+
+        [Fact]
+        public void ConnectProficiency_Reassigns_Skill_Proficiency_To_CharacterData_Proficiency()
+        {
+            CharacterData character = generateCharater();
+            character.GetSkill("Acrobatics").ProficiencyModifier = new() { Modifier = 2 };
+            character.GetSavingThrow("Dexterity").ProficiencyModifier = new() { Modifier = 4 };
+
+            character.ProficiencyBonus.Modifier = 8;
+
+            Assert.Equal(8, character.ProficiencyBonus.Modifier);
+            Assert.Equal(2, character.GetSkill("Acrobatics").ProficiencyModifier.Modifier);
+            Assert.Equal(4, character.GetSavingThrow("Dexterity").ProficiencyModifier.Modifier);
+
+            character.ConnectProficiency();
+
+            Assert.Equal(8, character.ProficiencyBonus.Modifier);
+            Assert.Equal(8, character.GetSkill("Acrobatics").ProficiencyModifier.Modifier);
+            Assert.Equal(8, character.GetSavingThrow("Dexterity").ProficiencyModifier.Modifier);
         }
 
         private CharacterData generateCharater()
